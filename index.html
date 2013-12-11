@@ -1,0 +1,58 @@
+<h1>WordNet RDF</h1>
+
+<em>WordNet is supported by the National Science Foundation under Grant Number 0855157. Any opinions, findings, and conclusions or recommendations expressed in this material are those of the creators of WordNet and do not necessarily reflect the views of the National Science Foundation.</em>
+
+<p>This is the RDF version of WordNet, created by mapping the existing WordNet data into
+RDF. The data is structured according to the <a href="http://lemon-model.net">lemon</a> model.
+In addition, links have been added from the following sources:</p>
+
+<ul>
+    <li> <a href="http://verbs.colorado.edu/~mpalmer/projects/verbnet.html">VerbNet</a> </li>
+    <li> <a href="http://lemon-model.net/lexica/uby">lemonUBY</a></li>
+    <li> <a href="http://www.w3.org/TR/wordnet-rdf/">W3C WordNet</a></li>
+    <li> <a href="http://lexvo.org">LexVo</a></li>
+    <li> Translations derived from <a href="http://casta-net.jp/~kuribayashi/multi/">Open Multilingual WordNet</a> </li>
+</ul>
+
+<p>These links increase the useful of the WordNet data. If you would like to contribute extra linking to WordNet please <a href="/wordnet/contact">Contact us</a>.</p>
+
+<h3>Search</h3>
+
+<p>You may search the RDF version of WordNet by entering a lemma into the following query field:</p>
+
+<form action="search">
+    <!--<label for="query">Search</label>--><input type="text" name="query"/><br/>
+    <input type="submit" value="Search"/>
+</form>
+
+<p>Alternatively you may use the <a href="sparql/">SPARQL endpoint</a> which uses the
+<a href="http://www.w3.org/TR/rdf-sparql-query/">SPARQL query language</a>.</p>
+
+<h3>Ontology</h3>
+
+<p>An OWL ontology is used to describe the structure of the RDF data. Its URL is as follows</p>
+
+<blockquote>
+  <a href="ontology">http://wordnet.princeton.edu/rdf/ontology</a>
+</blockquote>
+
+<p>The ontology in addition contains further linking to the following resources:</p>
+
+<ul>
+    <li> The <a href="http://isocat.org">ISOcat</a> data category repository</li>
+    <li> <a href="http://nachhalt.sfb632.uni-potsdam.de/owl/">OLiA</a> ontologies</li>
+    <li> <a href="http://lexinfo.net/">LexInfo</a> ontologies</li>
+</ul>
+
+<p>This ontology is given as an <a href="http://www.w3.org/TR/owl-features/">OWL</a> ontology.</p>
+
+<h3>Download</h3>
+
+<p>A single gzipped file containing all RDF triples in <a href="http://www.w3.org/TR/n-triples/">N-Triples</a> 
+format may be downloaded <a href="wordnet.nt.gz">here</a>. Please refer to the <a href="license.html">licensing 
+    information</a>
+</p>
+
+<h3>Credits</h3>
+
+<p>WordNet was converted into RDF by <a href="http://john.mccr.ae">John P. McCrae</a> of the <a href="http://www.sc.cit-ec.uni-bielefeld.de">Semantic Computing group</a> of the <a href="http://www.uni-bielefeld.de">University Bielefeld</a>. All code is available at <a href="http://github.com/jmccrae/wn-rdf">GitHub</a>.</p>

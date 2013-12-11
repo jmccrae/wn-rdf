@@ -1,0 +1,125 @@
+table.rdf > tbody > tr {
+    background-color: rgb(255,255,255);
+    border: 3px solid rgb(231,231,231);
+}
+
+table.inner_rdf > tbody > tr {
+    background-color: rgb(240,240,240);
+    padding: 4px;
+    border: 1px dotted rgb(31,31,31);
+}
+
+table.rdf_search > thead > tr {
+    background-color: rgb(240,240,240);
+}
+
+table.rdf_search > thead > tr > th {
+    border: 3px solid rgb(231,231,231);
+}
+
+tr.rdf_search_full {
+    background-color: rgb(255,255,255);
+    border-top: 3px solid rgb(231,231,231);
+}
+
+tr.rdf_search_empty > td:last-child {
+    background-color: rgb(255,255,255);
+    border-top: 1px dotted rgb(31,31,31);
+}
+
+table.rdf > tbody > tr > td {
+    padding-left: 8px;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    padding-right: 3px;
+}
+
+table.inner_rdf > tbody > tr > td:first-child {
+    width: 120px;
+}
+
+table.rdf > tbody > tr > td:first-child {
+    width: 120px;
+}
+
+
+table.rdf_search > tbody > tr > td:first-child {
+    width: 120px;
+    border-right: 3px solid rgb(231,231,231);
+}
+
+table.rdf > tbody > tr > td:first-child > a {
+    text-transform: capitalize;
+}
+table.rdf > tbody > tr > td > a {
+    text-decoration: none;
+}
+
+table.inner_rdf > tbody > tr > td:first-child > a {
+    text-transform: capitalize;
+}
+table.inner_rdf > tbody > tr > td > a {
+    text-decoration: none;
+}
+
+table.rdf {
+    width: 100%;
+    margin: 3px;
+}
+
+table.inner_rdf {
+    width: 98%;
+    border: 3px solid rgb(255,255,255);
+}
+
+#rdf_format_list {
+    display:none;
+}
+
+.rdf_format {
+    display:inline;
+    font-size: 20px;
+}
+
+li.rdf_format {
+    margin-left: 20px;
+    float: right;
+}
+
+/* Fix a bug in the main CSS */
+h1 {
+    line-height: 1em;
+}
+
+div.rdf_component_list {
+    display: inline;
+}
+
+div.rdf_component {
+    display: inline;
+    border: 1px dotted black;
+    size:150%;
+}
+
+:target {
+    font-weight:bold;
+    background: rgb(228, 237, 247);
+    border: none;
+
+}
+
+tr.sparql_head {
+    background-color: rgb(240,240,240);
+}
+
+th.sparql_head {
+    border: 3px solid rgb(231,231,231);
+}
+
+tr.sparql_body {
+    background-color: rgb(255,255,255);
+    border-top: 3px solid rgb(231,231,231);
+}
+
+
+

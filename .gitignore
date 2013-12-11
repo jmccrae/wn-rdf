@@ -34,3 +34,14 @@ nosetests.xml
 .mr.developer.cfg
 .project
 .pydevproject
+
+*.pyc
+*.swp
+.idea
+.svn
+mapping/*.nt.gz
+mapping/all.zip
+mapping/mapping.db
+store/
+mapping/verbnet-3.2.tar.gz
+

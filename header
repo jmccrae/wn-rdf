@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta content="all" name="robots">
+
+<meta content="" name="keywords">
+
+<meta content="" name="description">
+
+<meta content="Trustees of Princeton University © 2013" name="publisher">
+
+<meta content="Princeton University" name="author">
+
+<meta content="no" http-equiv="imagetoolbar">
+
+<meta content="chrome=1" http-equiv="X-UA-Compatible">
+
+<meta content="text/html; charset=utf-8" http-equiv="content-type">
+<link href="http://www.princeton.edu/main/favicon.ico" rel="shortcut icon">
+<title>%%TITLE%% - WordNet - %%TITLE%%</title>
+<link href="http://wordnet.princeton.edu/wwwdept_themes/common/css/component.css" media="all" rel="stylesheet" type="text/css"><!--[if lte IE 7]><link href="http://wordnet.princeton.edu/wwwdept_themes/common/css/msie.css" media="all" rel="stylesheet" type="text/css"><![endif]--><link href="http://wordnet.princeton.edu/wwwdept_themes/inventive-warmorange/css/style.css" media="screen,print" rel="stylesheet" type="text/css"><link href="http://wordnet.princeton.edu/wwwdept_themes/common/css/forms.css" media="all" rel="stylesheet" type="text/css"><link href="http://wordnet.princeton.edu/wwwdept_themes/inventive-warmorange/css/print.css" media="print" rel="stylesheet" type="text/css"><link href="http://wordnet.princeton.edu/wwwdept_themes/inventive-warmorange/css/handheld.css" media="handheld" rel="stylesheet" type="text/css"><link href="http://wordnet.princeton.edu/wwwdept_themes/inventive-warmorange/css/aural.css" media="aural" rel="stylesheet" type="text/css"><link href="http://wordnet.princeton.edu/wwwdept_themes/inventive-warmorange/css/braille.css" media="braille" rel="stylesheet" type="text/css"><!--[if lt IE 6]><link href="http://wordnet.princeton.edu/wwwdept_themes/inventive-warmorange/css/msie5.css" media="all" rel="stylesheet" type="text/css"><![endif]--><!--[if IE 6]><nocache><link href="http://wordnet.princeton.edu/wwwdept_themes/inventive-warmorange/css/msie6.css" media="all" rel="stylesheet" type="text/css"></nocache><![endif]--><link href="http://wordnet.princeton.edu/wordnet/css/custom.css" media="all" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js"></script>
+<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(
+			['_setAccount', 'UA-1512522-2'],
+			['_trackPageview']
+		);
+
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
+	<link href="wnrdf.css" media="all" rel="stylesheet" type="text/css">
+</head>
+
+<body class="wordnet" id="home">
+<!--googleoff: all--><div id="skipnav"><a href="#content">Skip over navigation</a></div><!--googleon: all--><div class="pagelevel-home nav-vertical" id="wrappercontainer"><div id="toolbarcontainer"><div id="toolbar"><!-- robots:noindex --><div id="logolink"><a href="http://www.princeton.edu/"><img alt="Princeton University" src="http://wordnet.princeton.edu/wwwdept_themes/inventive-warmorange/images/logobar_logo.png"></a></div><div id="toolbarlinks">
+<ul id="toolbarnav">
+
+</ul>
+</div><div id="searchbox"><form action="search" method="get"><input name="search_type" type="hidden" value="site"><input id="submit" name="submit" type="hidden" value="search"><input accesskey="4" class="searchtext" name="query" onblur="if (this.value == &#39;&#39;) this.value=&#39;Search&#39;" onfocus="if (this.value == &#39;Search&#39;) this.value=&#39;&#39;" type="text" value="Search"><input class="submit" name="submit" type="submit" value="Search"></form></div><!-- /robots:noindex --></div></div><div id="wrapper"><div id="headercontainer"><div id="header"><div id="bannercontainer"><div id="banner"><div id="bannerphoto"></div><div class="header" id="bannerlogo"><a href="/wordnet/"><img alt="WordNet" src="http://wordnet.princeton.edu/wordnet/banner_logo.png">
+<h1><span>WordNet</span></h1>
+</a></div><div class="clear"></div></div></div><div id="navalphacontainer"><div id="navalpha"><!-- robots:noindex --><div class="clear"></div><!-- /robots:noindex --></div></div></div></div><div id="maincontainer" class="subcontent-collapse"><div id="main"><!-- robots:noindex --><div id="navbetacontainer"><div id="navbeta">
+<ul>
+
+<li class="normal level1"><a href="/wordnet/" target="_self"><span>What is WordNet?</span></a></li>
+
+<li class="normal level1"><a href="/wordnet/about-wordnet/"><span>People</span></a></li>
+
+<li class="normal level1"><a href="/wordnet/news/"><span>News</span></a></li>
+
+<li class="externallink normal level1"><a href="http://wordnetweb.princeton.edu/perl/webwn" target="_self"><span>Use WordNet online</span></a></li>
+
+<li class="normal level1"><a href="/wordnet/download/"><span>Download</span></a></li>
+
+<li class="normal level1"><a href="/wordnet/citing-wordnet/"><span>Citing WordNet</span></a></li>
+
+<li class="normal level1"><a href="/wordnet/license/"><span>License and commercial use</span></a></li>
+
+<li class="normal level1"><a href="/wordnet/related-projects/"><span>Related projects</span></a></li>
+
+<li class="normal level1"><a href="/wordnet/documentation/"><span>WordNet documentation</span></a></li>
+
+<li class="normal level1"><a href="/wordnet/publications/"><span>Publications</span></a></li>
+
+<li class="normal level1"><a href="/wordnet/frequently-asked-questions/"><span>Frequently Asked Questions</span></a></li>
+
+<li class="externallink normal level1"><a href="http://wordnet.princeton.edu/wordnet/man/wnstats.7WN.html" target="_self"><span>WordNet Statistics</span></a></li>
+
+<li class="externallink normal level1"><a href="http://www.globalwordnet.org/" target="_self"><span>WordNets in other languages</span></a></li>
+
+<li class="normal last level1"><a href="/wordnet/contact/"><span>Contact us, Report problems</span></a></li>
+
+</ul>
+<br style="clear: both; line-height: 1px;">
+<span></span></div></div><!-- /robots:noindex --><div id="contentcontainer"><div id="breadcrumbscontainer"><div id="breadcrumbs"><a class='selected' href="/wordnet/">About WordNet</a><div class="clear"></div></div></div><div id="uppercontent"></div><div id="content">
+
+<div class="body">

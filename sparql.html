@@ -1,0 +1,18 @@
+<h1>WordNet SPARQL Query Interface</h1>
+
+<p>This is a <a href="sparql/">SPARQL endpoint</a> which uses the
+<a href="http://www.w3.org/TR/rdf-sparql-query/">SPARQL query language</a>.</p>
+
+<form>
+    <textarea name="query" class="code_area" rows="10" cols="80">
+PREFIX lemon: &lt;http://www.monnet-project.eu/lemon#&gt; 
+PREFIX wordnet: &lt;http://wordnet.princeton.edu/rdf/&gt; 
+PREFIX wordnet-ontology: &lt;http://wordnet.princeton.edu/rdf/ontology#&gt;
+
+
+select * where {
+ ?s a wordnet-ontology:Synset
+} limit 10
+    </textarea><br/>
+    <input type="submit" value="Query">
+</form>

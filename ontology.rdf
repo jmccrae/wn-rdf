@@ -1,0 +1,507 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF
+   xmlns:ns1="http://www.w3.org/2002/07/owl#"
+   xmlns:ns2="http://www.isocat.org/ns/dcr.rdf#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology#noun.process">
+    <rdf:type rdf:resource="http://wordnet.princeton.edu/rdf/ontology#LexicalDomain"/>
+    <rdfs:label xml:lang="en">Noun.process</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology#sense_tag">
+    <rdfs:label xml:lang="en">Sense tag</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology#instance_hypernym">
+    <rdfs:subPropertyOf rdf:resource="http://wordnet.princeton.edu/rdf/ontology#link"/>
+    <rdfs:label xml:lang="en">Instance hypernym</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology#action">
+    <rdfs:subPropertyOf rdf:resource="http://wordnet.princeton.edu/rdf/ontology#link"/>
+    <rdfs:label xml:lang="en">Action</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology#verb.social">
+    <rdf:type rdf:resource="http://wordnet.princeton.edu/rdf/ontology#LexicalDomain"/>
+    <rdfs:label xml:lang="en">Verb.social</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology#adjective">
+    <rdf:type rdf:resource="http://wordnet.princeton.edu/rdf/ontology#PartOfSpeech"/>
+    <rdfs:label xml:lang="en">Adjective</rdfs:label>
+    <ns2:datcat rdf:resource="http://www.isocat.org/datcat/DC-1230"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology#verb_frame_sentence">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="en">Verb frame sentence</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology#lexical_domain">
+    <rdfs:label xml:lang="en">Lexical domain</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology#verb.weather">
+    <rdfs:label xml:lang="en">Verb.weather</rdfs:label>
+    <rdf:type rdf:resource="http://wordnet.princeton.edu/rdf/ontology#LexicalDomain"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology#LexicalDomain">
+    <rdfs:label xml:lang="en">Lexical domain</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology#member">
+    <rdfs:label xml:lang="en">Member</rdfs:label>
+    <rdfs:subPropertyOf rdf:resource="http://wordnet.princeton.edu/rdf/ontology#link"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology#noun.cognition">
+    <rdf:type rdf:resource="http://wordnet.princeton.edu/rdf/ontology#LexicalDomain"/>
+    <rdfs:label xml:lang="en">Noun.cognition</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology#domain_member_category">
+    <rdfs:subPropertyOf rdf:resource="http://wordnet.princeton.edu/rdf/ontology#link"/>
+    <rdfs:label xml:lang="en">Domain member category</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology#hyponym">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+    <rdfs:label xml:lang="en">Hyponym</rdfs:label>
+    <rdfs:subPropertyOf rdf:resource="http://wordnet.princeton.edu/rdf/ontology#link"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology#domain_member_usage">
+    <rdfs:subPropertyOf rdf:resource="http://wordnet.princeton.edu/rdf/ontology#link"/>
+    <rdfs:label xml:lang="en">Domain member usage</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology#unlabeled">
+    <rdf:type rdf:resource="http://wordnet.princeton.edu/rdf/ontology#LexicalDomain"/>
+    <rdfs:label xml:lang="en">Unlabeled</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology#noun.communication">
+    <rdf:type rdf:resource="http://wordnet.princeton.edu/rdf/ontology#LexicalDomain"/>
+    <rdfs:label xml:lang="en">Noun.communication</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology#phrase_type">
+    <rdfs:label xml:lang="en">Phrase type</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology#domain">
+    <rdfs:subPropertyOf rdf:resource="http://wordnet.princeton.edu/rdf/ontology#link"/>
+    <rdfs:label xml:lang="en">Domain</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology#noun.person">
+    <rdf:type rdf:resource="http://wordnet.princeton.edu/rdf/ontology#LexicalDomain"/>
+    <rdfs:label xml:lang="en">Noun.person</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology#verb.body">
+    <rdf:type rdf:resource="http://wordnet.princeton.edu/rdf/ontology#LexicalDomain"/>
+    <rdfs:label xml:lang="en">Verb.body</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology#verb.possession">
+    <rdfs:label xml:lang="en">Verb.possession</rdfs:label>
+    <rdf:type rdf:resource="http://wordnet.princeton.edu/rdf/ontology#LexicalDomain"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology#agent">
+    <rdfs:subPropertyOf rdf:resource="http://wordnet.princeton.edu/rdf/ontology#link"/>
+    <rdfs:label xml:lang="en">Agent</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology#link">
+    <rdfs:label xml:lang="en">Link</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology#noun.location">
+    <rdf:type rdf:resource="http://wordnet.princeton.edu/rdf/ontology#LexicalDomain"/>
+    <rdfs:label xml:lang="en">Noun.location</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology#tag_count">
+    <rdfs:label xml:lang="en">Tag count</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology#PhraseType">
+    <rdfs:label xml:lang="en">Phrase type</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology#theme">
+    <rdfs:subPropertyOf rdf:resource="http://wordnet.princeton.edu/rdf/ontology#link"/>
+    <rdfs:label xml:lang="en">Theme</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology#noun.linkdef">
+    <rdfs:label xml:lang="en">Noun.linkdef</rdfs:label>
+    <rdf:type rdf:resource="http://wordnet.princeton.edu/rdf/ontology#LexicalDomain"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology#part_holonym">
+    <rdfs:subPropertyOf rdf:resource="http://wordnet.princeton.edu/rdf/ontology#link"/>
+    <rdfs:label xml:lang="en">Part holonym</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology#noun.artifact">
+    <rdf:type rdf:resource="http://wordnet.princeton.edu/rdf/ontology#LexicalDomain"/>
+    <rdfs:label xml:lang="en">Noun.artifact</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology#domain_category">
+    <rdfs:subPropertyOf rdf:resource="http://wordnet.princeton.edu/rdf/ontology#link"/>
+    <rdfs:label xml:lang="en">Domain category</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology#verb.emotion">
+    <rdf:type rdf:resource="http://wordnet.princeton.edu/rdf/ontology#LexicalDomain"/>
+    <rdfs:label xml:lang="en">Verb.emotion</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology#participle">
+    <rdfs:subPropertyOf rdf:resource="http://wordnet.princeton.edu/rdf/ontology#link"/>
+    <rdfs:label xml:lang="en">Participle</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology#goal">
+    <rdfs:subPropertyOf rdf:resource="http://wordnet.princeton.edu/rdf/ontology#link"/>
+    <rdfs:label xml:lang="en">Goal</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology#verb_group">
+    <rdfs:label xml:lang="en">Verb group</rdfs:label>
+    <rdfs:subPropertyOf rdf:resource="http://wordnet.princeton.edu/rdf/ontology#link"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology#noun.act">
+    <rdfs:label xml:lang="en">Noun.act</rdfs:label>
+    <rdf:type rdf:resource="http://wordnet.princeton.edu/rdf/ontology#LexicalDomain"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology#adj.ppl">
+    <rdfs:label xml:lang="en">Adj.ppl</rdfs:label>
+    <rdf:type rdf:resource="http://wordnet.princeton.edu/rdf/ontology#LexicalDomain"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology#domain_usage">
+    <rdfs:label xml:lang="en">Domain usage</rdfs:label>
+    <rdfs:subPropertyOf rdf:resource="http://wordnet.princeton.edu/rdf/ontology#link"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology#old_sense_key">
+    <rdfs:label xml:lang="en">Old sense key</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology#immediately_postnominal">
+    <rdf:type rdf:resource="http://wordnet.princeton.edu/rdf/ontology#AdjectivePosition"/>
+    <rdfs:label xml:lang="en">Immediately postnominal</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology#sense_number">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="en">Sense number</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology#noun.phenomenon">
+    <rdfs:label xml:lang="en">Noun.phenomenon</rdfs:label>
+    <rdf:type rdf:resource="http://wordnet.princeton.edu/rdf/ontology#LexicalDomain"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology#noun.motive">
+    <rdfs:label xml:lang="en">Noun.motive</rdfs:label>
+    <rdf:type rdf:resource="http://wordnet.princeton.edu/rdf/ontology#LexicalDomain"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology#instrument">
+    <rdfs:subPropertyOf rdf:resource="http://wordnet.princeton.edu/rdf/ontology#link"/>
+    <rdfs:label xml:lang="en">Instrument</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology#domain_region">
+    <rdfs:subPropertyOf rdf:resource="http://wordnet.princeton.edu/rdf/ontology#link"/>
+    <rdfs:label xml:lang="en">Domain region</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology#substance_holonym">
+    <rdfs:label xml:lang="en">Substance holonym</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+    <rdfs:subPropertyOf rdf:resource="http://wordnet.princeton.edu/rdf/ontology#link"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.isocat.org/ns/dcr.rdf#datcat">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology#noun.state">
+    <rdfs:label xml:lang="en">Noun.state</rdfs:label>
+    <rdf:type rdf:resource="http://wordnet.princeton.edu/rdf/ontology#LexicalDomain"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology#verb.competition">
+    <rdf:type rdf:resource="http://wordnet.princeton.edu/rdf/ontology#LexicalDomain"/>
+    <rdfs:label xml:lang="en">Verb.competition</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology#also">
+    <rdfs:label xml:lang="en">Also</rdfs:label>
+    <ns2:datcat rdf:resource="http://www.isocat.org/datcat/DC-461"/>
+    <rdfs:subPropertyOf rdf:resource="http://wordnet.princeton.edu/rdf/ontology#link"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology#translation">
+    <rdfs:label xml:lang="en">Translation</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <ns2:datcat rdf:resource="http://www.isocat.org/datcat/DC-2970"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology#phrase">
+    <ns2:datcat rdf:resource="http://www.isocat.org/datcat/DC-2282"/>
+    <rdf:type rdf:resource="http://wordnet.princeton.edu/rdf/ontology#PartOfSpeech"/>
+    <rdfs:label xml:lang="en">Phrase</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology#noun.shape">
+    <rdfs:label xml:lang="en">Noun.shape</rdfs:label>
+    <rdf:type rdf:resource="http://wordnet.princeton.edu/rdf/ontology#LexicalDomain"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology#idiom">
+    <rdf:type rdf:resource="http://wordnet.princeton.edu/rdf/ontology#PhraseType"/>
+    <ns2:datcat rdf:resource="http://www.isocat.org/datcat/DC-351"/>
+    <rdfs:label xml:lang="en">Idiom</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology#adj.pert">
+    <rdfs:label xml:lang="en">Adj.pert</rdfs:label>
+    <rdf:type rdf:resource="http://wordnet.princeton.edu/rdf/ontology#LexicalDomain"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology#verb.motion">
+    <rdfs:label xml:lang="en">Verb.motion</rdfs:label>
+    <rdf:type rdf:resource="http://wordnet.princeton.edu/rdf/ontology#LexicalDomain"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology#location">
+    <rdfs:subPropertyOf rdf:resource="http://wordnet.princeton.edu/rdf/ontology#link"/>
+    <rdfs:label xml:lang="en">Location</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology#gloss">
+    <rdfs:label xml:lang="en">Gloss</rdfs:label>
+    <ns2:datcat rdf:resource="http://www.isocat.org/datcat/DC-244"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology#verb.creation">
+    <rdf:type rdf:resource="http://wordnet.princeton.edu/rdf/ontology#LexicalDomain"/>
+    <rdfs:label xml:lang="en">Verb.creation</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology#adj.all">
+    <rdf:type rdf:resource="http://wordnet.princeton.edu/rdf/ontology#LexicalDomain"/>
+    <rdfs:label xml:lang="en">Adj.all</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology#noun.event">
+    <rdfs:label xml:lang="en">Noun.event</rdfs:label>
+    <rdf:type rdf:resource="http://wordnet.princeton.edu/rdf/ontology#LexicalDomain"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology#verb.cognition">
+    <rdfs:label xml:lang="en">Verb.cognition</rdfs:label>
+    <rdf:type rdf:resource="http://wordnet.princeton.edu/rdf/ontology#LexicalDomain"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology#result">
+    <rdfs:subPropertyOf rdf:resource="http://wordnet.princeton.edu/rdf/ontology#link"/>
+    <rdfs:label xml:lang="en">Result</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology#verb.stative">
+    <rdfs:label xml:lang="en">Verb.stative</rdfs:label>
+    <rdf:type rdf:resource="http://wordnet.princeton.edu/rdf/ontology#LexicalDomain"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology#attributive">
+    <rdfs:label xml:lang="en">Attributive</rdfs:label>
+    <rdf:type rdf:resource="http://wordnet.princeton.edu/rdf/ontology#AdjectivePosition"/>
+    <ns2:datcat rdf:resource="http://www.isocat.org/datcat/DC-5242"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology#noun">
+    <rdf:type rdf:resource="http://wordnet.princeton.edu/rdf/ontology#PartOfSpeech"/>
+    <rdfs:label xml:lang="en">Noun</rdfs:label>
+    <ns2:datcat rdf:resource="http://www.isocat.org/datcat/DC-1333"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology#noun.feeling">
+    <rdfs:label xml:lang="en">Noun.feeling</rdfs:label>
+    <rdf:type rdf:resource="http://wordnet.princeton.edu/rdf/ontology#LexicalDomain"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology#beneficiary">
+    <rdfs:subPropertyOf rdf:resource="http://wordnet.princeton.edu/rdf/ontology#link"/>
+    <rdfs:label xml:lang="en">Beneficiary</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology#instance_hyponym">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+    <rdfs:subPropertyOf rdf:resource="http://wordnet.princeton.edu/rdf/ontology#link"/>
+    <rdfs:label xml:lang="en">Instance hyponym</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology#sample">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <ns2:datcat rdf:resource="http://www.isocat.org/datcat/DC-455"/>
+    <rdfs:label xml:lang="en">Sample</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology#verb.contact">
+    <rdfs:label xml:lang="en">Verb.contact</rdfs:label>
+    <rdf:type rdf:resource="http://wordnet.princeton.edu/rdf/ontology#LexicalDomain"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology#entail">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+    <rdfs:label xml:lang="en">Entail</rdfs:label>
+    <rdfs:subPropertyOf rdf:resource="http://wordnet.princeton.edu/rdf/ontology#link"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology#domain_member_region">
+    <rdfs:label xml:lang="en">Domain member region</rdfs:label>
+    <rdfs:subPropertyOf rdf:resource="http://wordnet.princeton.edu/rdf/ontology#link"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology#verb">
+    <rdf:type rdf:resource="http://wordnet.princeton.edu/rdf/ontology#PartOfSpeech"/>
+    <rdfs:label xml:lang="en">Verb</rdfs:label>
+    <ns2:datcat rdf:resource="http://www.isocat.org/datcat/DC-1424"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology#verb.change">
+    <rdf:type rdf:resource="http://wordnet.princeton.edu/rdf/ontology#LexicalDomain"/>
+    <rdfs:label xml:lang="en">Verb.change</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology#member_meronym">
+    <rdfs:subPropertyOf rdf:resource="http://wordnet.princeton.edu/rdf/ontology#link"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+    <rdfs:label xml:lang="en">Member meronym</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology#noun.object">
+    <rdf:type rdf:resource="http://wordnet.princeton.edu/rdf/ontology#LexicalDomain"/>
+    <rdfs:label xml:lang="en">Noun.object</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology#verbnet_class">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="en">Verbnet class</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology#attribute">
+    <ns2:datcat rdf:resource="http://www.isocat.org/datcat/DC-2267"/>
+    <rdfs:label xml:lang="en">Attribute</rdfs:label>
+    <rdfs:subPropertyOf rdf:resource="http://wordnet.princeton.edu/rdf/ontology#link"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology#noun.body">
+    <rdfs:label xml:lang="en">Noun.body</rdfs:label>
+    <rdf:type rdf:resource="http://wordnet.princeton.edu/rdf/ontology#LexicalDomain"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology#patient">
+    <rdfs:label xml:lang="en">Patient</rdfs:label>
+    <rdfs:subPropertyOf rdf:resource="http://wordnet.princeton.edu/rdf/ontology#link"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology#part_meronym">
+    <rdfs:label xml:lang="en">Part meronym</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+    <rdfs:subPropertyOf rdf:resource="http://wordnet.princeton.edu/rdf/ontology#link"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology#adverb">
+    <rdf:type rdf:resource="http://wordnet.princeton.edu/rdf/ontology#PartOfSpeech"/>
+    <rdfs:label xml:lang="en">Adverb</rdfs:label>
+    <ns2:datcat rdf:resource="http://www.isocat.org/datcat/DC-1232"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology#product">
+    <rdfs:label xml:lang="en">Product</rdfs:label>
+    <rdfs:subPropertyOf rdf:resource="http://wordnet.princeton.edu/rdf/ontology#link"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology#noun.attribute">
+    <rdfs:label xml:lang="en">Noun.attribute</rdfs:label>
+    <rdf:type rdf:resource="http://wordnet.princeton.edu/rdf/ontology#LexicalDomain"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology#predicate">
+    <rdf:type rdf:resource="http://wordnet.princeton.edu/rdf/ontology#AdjectivePosition"/>
+    <rdfs:label xml:lang="en">Predicate</rdfs:label>
+    <ns2:datcat rdf:resource="http://www.isocat.org/datcat/DC-2710"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology#Synset">
+    <rdfs:label xml:lang="en">Synset</rdfs:label>
+    <ns2:datcat rdf:resource="http://www.isocat.org/datcat/DC-4613"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology#hypernym">
+    <rdfs:label xml:lang="en">Hypernym</rdfs:label>
+    <ns2:datcat rdf:resource="http://www.isocat.org/datcat/DC-31"/>
+    <rdfs:subPropertyOf rdf:resource="http://wordnet.princeton.edu/rdf/ontology#link"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology#verb.perception">
+    <rdf:type rdf:resource="http://wordnet.princeton.edu/rdf/ontology#LexicalDomain"/>
+    <rdfs:label xml:lang="en">Verb.perception</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology#noun.substance">
+    <rdfs:label xml:lang="en">Noun.substance</rdfs:label>
+    <rdf:type rdf:resource="http://wordnet.princeton.edu/rdf/ontology#LexicalDomain"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology#noun.plant">
+    <rdf:type rdf:resource="http://wordnet.princeton.edu/rdf/ontology#LexicalDomain"/>
+    <rdfs:label xml:lang="en">Noun.plant</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology#substance_meronym">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+    <rdfs:label xml:lang="en">Substance meronym</rdfs:label>
+    <rdfs:subPropertyOf rdf:resource="http://wordnet.princeton.edu/rdf/ontology#link"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology#AdjectivePosition">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Adjective position</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology#noun.group">
+    <rdfs:label xml:lang="en">Noun.group</rdfs:label>
+    <rdf:type rdf:resource="http://wordnet.princeton.edu/rdf/ontology#LexicalDomain"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology#derivation">
+    <rdfs:label xml:lang="en">Derivation</rdfs:label>
+    <rdfs:subPropertyOf rdf:resource="http://wordnet.princeton.edu/rdf/ontology#link"/>
+    <ns2:datcat rdf:resource="http://www.isocat.org/datcat/DC-4611"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology#PartOfSpeech">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Part of speech</rdfs:label>
+    <ns2:datcat rdf:resource="http://www.isocat.org/datcat/DC-396"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology#part_of_speech">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="en">Part of speech</rdfs:label>
+    <ns2:datcat rdf:resource="http://www.isocat.org/datcat/DC-396"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology#noun.food">
+    <rdfs:label xml:lang="en">Noun.food</rdfs:label>
+    <rdf:type rdf:resource="http://wordnet.princeton.edu/rdf/ontology#LexicalDomain"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology#creator">
+    <rdfs:label xml:lang="en">Creator</rdfs:label>
+    <rdfs:subPropertyOf rdf:resource="http://wordnet.princeton.edu/rdf/ontology#link"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology#verb.consumption">
+    <rdf:type rdf:resource="http://wordnet.princeton.edu/rdf/ontology#LexicalDomain"/>
+    <rdfs:label xml:lang="en">Verb.consumption</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology#cause">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+    <rdfs:subPropertyOf rdf:resource="http://wordnet.princeton.edu/rdf/ontology#link"/>
+    <rdfs:label xml:lang="en">Cause</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology#member_holonym">
+    <rdfs:subPropertyOf rdf:resource="http://wordnet.princeton.edu/rdf/ontology#link"/>
+    <rdfs:label xml:lang="en">Member holonym</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology#adv.all">
+    <rdf:type rdf:resource="http://wordnet.princeton.edu/rdf/ontology#LexicalDomain"/>
+    <rdfs:label xml:lang="en">Adv.all</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology">
+    <ns1:imports rdf:resource="http://www.monnet-project.eu/lemon"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology#pertainym">
+    <rdfs:subPropertyOf rdf:resource="http://wordnet.princeton.edu/rdf/ontology#link"/>
+    <rdfs:label xml:lang="en">Pertainym</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology#adjective_satellite">
+    <rdf:type rdf:resource="http://wordnet.princeton.edu/rdf/ontology#PartOfSpeech"/>
+    <rdfs:label xml:lang="en">Adjective satellite</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology#noun.tops">
+    <rdf:type rdf:resource="http://wordnet.princeton.edu/rdf/ontology#LexicalDomain"/>
+    <rdfs:label xml:lang="en">Noun.tops</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology#noun.possession">
+    <rdf:type rdf:resource="http://wordnet.princeton.edu/rdf/ontology#LexicalDomain"/>
+    <rdfs:label xml:lang="en">Noun.possession</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology#noun.animal">
+    <rdf:type rdf:resource="http://wordnet.princeton.edu/rdf/ontology#LexicalDomain"/>
+    <rdfs:label xml:lang="en">Noun.animal</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology#noun.quantity">
+    <rdfs:label xml:lang="en">Noun.quantity</rdfs:label>
+    <rdf:type rdf:resource="http://wordnet.princeton.edu/rdf/ontology#LexicalDomain"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology#experiencer">
+    <rdfs:subPropertyOf rdf:resource="http://wordnet.princeton.edu/rdf/ontology#link"/>
+    <rdfs:label xml:lang="en">Experiencer</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology#synset_member">
+    <rdfs:label xml:lang="en">Synset member</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology#verb.communication">
+    <rdfs:label xml:lang="en">Verb.communication</rdfs:label>
+    <rdf:type rdf:resource="http://wordnet.princeton.edu/rdf/ontology#LexicalDomain"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology#antonym">
+    <ns2:datcat rdf:resource="http://www.isocat.org/datcat/DC-83"/>
+    <rdfs:label xml:lang="en">Antonym</rdfs:label>
+    <rdfs:subPropertyOf rdf:resource="http://wordnet.princeton.edu/rdf/ontology#link"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology#similar">
+    <rdfs:subPropertyOf rdf:resource="http://wordnet.princeton.edu/rdf/ontology#link"/>
+    <rdfs:label xml:lang="en">Similar</rdfs:label>
+    <ns2:datcat rdf:resource="http://www.isocat.org/datcat/DC-438"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://wordnet.princeton.edu/rdf/ontology#noun.time">
+    <rdfs:label xml:lang="en">Noun.time</rdfs:label>
+    <rdf:type rdf:resource="http://wordnet.princeton.edu/rdf/ontology#LexicalDomain"/>
+  </rdf:Description>
+</rdf:RDF>
