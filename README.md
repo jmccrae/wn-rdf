@@ -30,6 +30,7 @@ The following files are not necessary to deploy the web interface
 * `write_schema.py`: Generates `wn_schema.py` from the SQLite database
 * `write_sql_schema.sh`: Generates the header (SQL `CREATE` commands) necessary to create a new SQLite database from an existing database
 * `extra_indexes.sql`: Generates extra indexes in the SQLite database to speed up page load time
+* `stresstest.py`: Stress tests the server by firing lots of requests in a brief interval
 
 Deployment
 ----------
