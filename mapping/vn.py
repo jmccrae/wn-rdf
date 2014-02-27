@@ -1,5 +1,5 @@
 # Usage:
-#   python mapping/vn.py | python WNFromRDF.py | sqlite3 wordnet_3.1+.db
+#   python vn.py | python ../WNFromRDF.py | sqlite3 ../wordnet_3.1+.db
 import tarfile
 from os.path import exists
 from urllib import quote_plus
@@ -10,13 +10,13 @@ wn_prefix = "http://wordnet.princeton.edu/rdf/"
 wn_version = "wn31"
 vn_prefix = "http://verbs.colorado.edu/verb-index/vn/"
 
-if not exists('mapping/verbnet-3.2.tar.gz'):
-    sys.stder.write("Please download http://verbs.colorado.edu/verb-index/vn/verbnet-3.2.tar.gz\n")
+if not exists('verbnet-3.2.tar.gz'):
+    print "Please download http://verbs.colorado.edu/verb-index/vn/verbnet-3.2.tar.gz"
     sys.exit()
 
-conn = sqlite3.connect("wordnet_3.1+.db")
+conn = sqlite3.connect("../wordnet_3.1+.db")
 cursor = conn.cursor()
-tar = tarfile.open("mapping/verbnet-3.2.tar.gz", "r:gz")
+tar = tarfile.open("verbnet-3.2.tar.gz", "r:gz")
 for tarinfo in tar:
     if tarinfo.isreg() and tarinfo.name.endswith(".xml"):
         xml = ET.parse(tar.extractfile(tarinfo))

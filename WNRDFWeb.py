@@ -68,6 +68,10 @@ class WNRDFServer:
         self.footer = open(resolve("footer")).read()
 
 
+    @staticmethod
+    def send302(start_response, location):
+        start_response('302 Found', [('Location', location)])
+        return ['Moved to ' + location]
        
     @staticmethod
     def send400(start_response):
@@ -205,8 +209,11 @@ class WNRDFServer:
         elif uri == "/wnrdf.css" or uri == "/sparql/wnrdf.css":
             start_response('200 OK', [('Content-type', 'text/css')])
             return [open(resolve("wnrdf.css")).read()]
-        elif re.match("/%s\-(\d+)\-[nvarsp](|\.nt|\.html|\.rdf|\.ttl|\.json)$" % WNRDF.wn_version, uri):
-            synset_id = re.findall("/%s\-(\d+)\-[nvarsp]" % WNRDF.wn_version, uri)[0]
+        elif re.match("/%s/(\d+)\-[nvarsp](|\.nt|\.html|\.rdf|\.ttl|\.json)$" % WNRDF.wn_version, uri):
+            synset_id = re.findall("/%s/(\d+)\-[nvarsp]" % WNRDF.wn_version, uri)[0]
+            if len(synset_id) == 8:
+                synset_id = str(WNRDF.pos2number(uri[-1])) + synset_id
+                return self.send302(start_response,"/%s/%s-%s" % (WNRDF.wn_version, synset_id, uri[-1]))
             graph = WNRDF.synset(self.wordnet_context, int(synset_id))
             if graph is None:
                 return self.send404(start_response)
@@ -218,9 +225,9 @@ class WNRDFServer:
                     content = graph.serialize(format=mime, context=self.wordnet_context.jsonld_context)
                 except Exception:
                     return self.send501(start_response)
-            start_response('200 OK', [('Content-type', self.mime_types[mime]), ('Content-length', str(len(content)))])
+            start_response('200 OK', [('Content-type', self.mime_types[mime]),('Vary','Accept'), ('Content-length', str(len(content)))])
             return [content]
-        elif re.match("/title/%s\-(\d+)\-[nvarsp](|\.nt|\.html|\.rdf|\.ttl|\.json)$" % WNRDF.wn_version, uri):
+        elif re.match("/title/%s/(\d+)\-[nvarsp](|\.nt|\.html|\.rdf|\.ttl|\.json)$" % WNRDF.wn_version, uri):
             synset_id = re.findall("/%s\-(\d+)\-[nvarsp]" % WNRDF.wn_version, uri)[0]
             graph = WNRDF.synset(self.wordnet_context, int(synset_id))
             if graph is None:
@@ -228,8 +235,8 @@ class WNRDFServer:
             title = ', '.join(sorted([str(o) for _, _, o in graph.triples((None, RDFS.label, None))])) 
             start_response('200 OK', [('Content-type', 'text/plain')])
             return [title]
-        elif re.match("/(.*)\-[nvarsp](|\.nt|\.html|\.rdf|\.ttl|\.json)$", uri):
-            lemma_pos, = re.findall("/(.*)\-([nvarsp])", uri)
+        elif re.match("/%s/(.*)\-[nvarsp](|\.nt|\.html|\.rdf|\.ttl|\.json)$" % WNRDF.wn_version, uri):
+            lemma_pos, = re.findall("^/%s/(.*)\-([nvarsp])" % WNRDF.wn_version, uri)
             lemma, pos = lemma_pos
             graph = WNRDF.entry(self.wordnet_context, unquote_plus(lemma), pos)
             if graph is None:
@@ -244,7 +251,7 @@ class WNRDFServer:
                                               base=WNRDF.entry_name(unquote_plus(lemma), pos))
                 except Exception as x:
                     return self.send501(start_response)
-            start_response('200 OK', [('Content-type', self.mime_types[mime]), ('Content-length', str(len(content)))])
+            start_response('200 OK', [('Content-type', self.mime_types[mime]),('Vary','Accept'), ('Content-length', str(len(content)))])
             return [content]
         elif uri == "/search":
             start_response('200 OK', [('Content-type', 'text/html')])
@@ -262,7 +269,7 @@ class WNRDFServer:
             start_response('200 OK', [('Content-type', 'application/rdf+xml'),
                                       ('Content-length', str(os.stat("ontology.rdf").st_size))])
             return [open(resolve("ontology.rdf")).read()]
-        elif uri == "/wordnet.nt.gz":
+        elif uri == ("/%s.nt.gz" % WNRDF.wn_version):
             start_response('200 OK', [('Content-type', 'appliction/x-gzip'),
                                       ('Content-length', str(os.stat("wordnet.nt.gz").st_size))])
             return open(resolve("wordnet.nt.gz"), "rb").read()
@@ -313,8 +320,8 @@ class WNRDFServer:
             if not lemma == last_lemma or not pos == last_pos:
                 last_lemma = lemma
                 last_pos = pos
-                yield "<tr class='rdf_search_full'><td><a href='%s-%s'>%s</a> (%s)</td><td><a href='%s-%s-%s'>%s</a></td></tr>" % \
-                      (lemma, pos, lemma, pos, WNRDF.wn_version, synsetid, pos, self.synset_label(cursor, synsetid))
+                yield "<tr class='rdf_search_full'><td><a href='%s/%s-%s'>%s</a> (%s)</td><td><a href='%s/%s-%s'>%s</a></td></tr>" % \
+                      (WNRDF.wn_version, lemma, pos, lemma, pos, WNRDF.wn_version, synsetid, pos, self.synset_label(cursor, synsetid))
             else:
                 yield "<tr class='rdf_search_empty'><td></td><td><a href='%s-%s-%s'>%s</a></td></tr>" % \
                       (WNRDF.wn_version, synsetid, pos, self.synset_label(cursor, synsetid))

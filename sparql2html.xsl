@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <!DOCTYPE xsl:stylesheet [
         <!ENTITY lemon   "http://www.monnet-project.eu/lemon#">
-        <!ENTITY wordnet-ontology   "http://wordnet.princeton.edu/rdf/ontology#">
-        <!ENTITY wordnet "http://wordnet.princeton.edu/rdf/">
+        <!ENTITY wordnet-ontology   "http://wordnet-rdf.princeton.edu/ontology#">
+        <!ENTITY wordnet "http://wordnet-rdf.princeton.edu/">
         <!ENTITY rdf   "http://www.w3.org/1999/02/22-rdf-syntax-ns#">
         <!ENTITY rdfs   "http://www.w3.org/2000/01/rdf-schema#">
         <!ENTITY verbnet "http://verbs.colorado.edu/verb-index/vn/">

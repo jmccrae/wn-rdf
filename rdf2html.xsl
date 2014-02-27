@@ -2,11 +2,10 @@
 
 <!DOCTYPE xsl:stylesheet [
         <!ENTITY lemon   "http://www.monnet-project.eu/lemon#">
-        <!ENTITY wordnet-ontology   "http://wordnet.princeton.edu/rdf/ontology#">
-        <!ENTITY wordnet "http://wordnet.princeton.edu/rdf/">
+        <!ENTITY wordnet-ontology   "http://wordnet-rdf.princeton.edu/ontology#">
+        <!ENTITY wordnet "http://wordnet-rdf.princeton.edu/wn31/">
         <!ENTITY rdf   "http://www.w3.org/1999/02/22-rdf-syntax-ns#">
         <!ENTITY rdfs   "http://www.w3.org/2000/01/rdf-schema#">
-        <!ENTITY wordnet-synset "http://wordnet.princeton.edu/rdf/wn31-">
         <!ENTITY verbnet "http://verbs.colorado.edu/verb-index/vn/">
         <!ENTITY lexvo "http://www.lexvo.org/page/iso639-3/">
         <!ENTITY owl "http://www.w3.org/2002/07/owl#">
@@ -20,7 +19,7 @@
                 xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
                 xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
                 xmlns:lemon="http://www.monnet-project.eu/lemon#"
-                xmlns:wordnet-ontology="http://wordnet.princeton.edu/rdf/ontology#"
+                xmlns:wordnet-ontology="http://wordnet-rdf.princeton.edu/ontology#"
         >
 
     <xsl:template match="/rdf:RDF">
@@ -101,14 +100,14 @@
                                         <xsl:value-of select="concat(namespace-uri(),local-name())"/>
                                     </xsl:attribute>
                                     <!-- Special mouse over for synsets-->
-                                    <xsl:if test="contains(@rdf:resource,'&wordnet-synset;')">
+                                    <!--<xsl:if test="contains(@rdf:resource,'&wordnet-synset;')">
                                         <xsl:attribute name="id">
                                             <xsl:value-of select="concat(local-name(),substring-after(@rdf:resource,'&wordnet;'))"/>
                                         </xsl:attribute>
                                         <script>
                                            jQuery.get('title/<xsl:value-of select="substring-after(@rdf:resource,'&wordnet;')"/>', function(desc) { $('#<xsl:value-of select="concat(local-name(),substring-after(@rdf:resource,'&wordnet;'))"/>').attr('title',desc); }) 
                                        </script>
-                                    </xsl:if> 
+                                    </xsl:if>-->
                                    <xsl:choose>
                                         <xsl:when
                                                 test="contains(@rdf:resource,'&wordnet-ontology;')">
@@ -449,67 +448,67 @@
                 </xsl:attribute>
                 <xsl:choose>
                     <xsl:when test="$code='ara'">
-                        <img src="flag/sa.gif" title="Arabic (ara)"/>
+                        <img src="/flag/sa.gif" title="Arabic (ara)"/>
                     </xsl:when>
                     <xsl:when test="$code='sqi'">
-                        <img src="flag/al.gif" title="Albanian (sqi)"/>
+                        <img src="/flag/al.gif" title="Albanian (sqi)"/>
                     </xsl:when>
                      <xsl:when test="$code='zho'">
-                        <img src="flag/cn.gif" title="Chinese (zho)"/>
+                         <img src="/flag/cn.gif" title="Chinese (zho)"/>
                     </xsl:when>
                      <xsl:when test="$code='dan'">
-                        <img src="flag/dk.gif" title="Danish (dan)"/>
+                         <img src="/flag/dk.gif" title="Danish (dan)"/>
                     </xsl:when>
                      <xsl:when test="$code='fas'">
-                        <img src="flag/ir.gif" title="Persian (fas)"/>
+                         <img src="/flag/ir.gif" title="Persian (fas)"/>
                     </xsl:when>
                      <xsl:when test="$code='fin'">
-                        <img src="flag/fi.gif" title="Finnish (fin)"/>
+                         <img src="/flag/fi.gif" title="Finnish (fin)"/>
                     </xsl:when>
                      <xsl:when test="$code='fra'">
-                        <img src="flag/fr.gif" title="French (fra)"/>
+                         <img src="/flag/fr.gif" title="French (fra)"/>
                     </xsl:when>
                      <xsl:when test="$code='heb'">
-                        <img src="flag/il.gif" title="Hebrew (heb)"/>
+                         <img src="/flag/il.gif" title="Hebrew (heb)"/>
                     </xsl:when>
                      <xsl:when test="$code='ita'">
-                        <img src="flag/it.gif" title="Italian (ita)"/>
+                         <img src="/flag/it.gif" title="Italian (ita)"/>
                     </xsl:when>
                      <xsl:when test="$code='jpn'">
-                        <img src="flag/jp.gif" title="Japanes (jpn)"/>
+                         <img src="/flag/jp.gif" title="Japanes (jpn)"/>
                     </xsl:when>
                      <xsl:when test="$code='cat'">
-                        <img src="flag/catalonia.gif" title="Catalan (cat)"/>
+                         <img src="/flag/catalonia.gif" title="Catalan (cat)"/>
                     </xsl:when>
                      <xsl:when test="$code='eus'">
-                        <img src="flag/basque.gif" title="Basque (eus)"/>
+                         <img src="/flag/basque.gif" title="Basque (eus)"/>
                     </xsl:when>
                      <xsl:when test="$code='glg'">
-                        <img src="flag/galicia.gif" title="Galician (glg)"/>
+                         <img src="/flag/galicia.gif" title="Galician (glg)"/>
                     </xsl:when>
                      <xsl:when test="$code='spa'">
-                        <img src="flag/es.gif" title="Spanish (spa)"/>
+                         <img src="/flag/es.gif" title="Spanish (spa)"/>
                     </xsl:when>
                      <xsl:when test="$code='ind'">
-                        <img src="flag/id.gif" title="Bahasa Indonesia (ind)"/>
+                         <img src="/flag/id.gif" title="Bahasa Indonesia (ind)"/>
                     </xsl:when>
                      <xsl:when test="$code='zsm'">
-                        <img src="flag/my.gif" title="Bahasa Malay (zsm)"/>
+                         <img src="/flag/my.gif" title="Bahasa Malay (zsm)"/>
                     </xsl:when>
                       <xsl:when test="$code='nno'">
-                        <img src="flag/no.gif" title="Nynorsk (nno)"/> (Nynorsk)
+                          <img src="/flag/no.gif" title="Nynorsk (nno)"/> (Nynorsk)
                     </xsl:when>
                       <xsl:when test="$code='nob'">
-                        <img src="flag/no.gif" title="Norwegian Bokm&#229;l (nob)"/> (Bokm&#229;l)
+                          <img src="/flag/no.gif" title="Norwegian Bokm&#229;l (nob)"/> (Bokm&#229;l)
                     </xsl:when>
                       <xsl:when test="$code='pol'">
-                        <img src="flag/pl.gif" title="Polish (pol)"/>
+                          <img src="/flag/pl.gif" title="Polish (pol)"/>
                     </xsl:when>
                       <xsl:when test="$code='por'">
-                        <img src="flag/pt.gif" title="Portuguese (por)"/>
+                          <img src="/flag/pt.gif" title="Portuguese (por)"/>
                     </xsl:when>
                       <xsl:when test="$code='tha'">
-                        <img src="flag/th.gif" title="Thai (tha)"/>
+                          <img src="/flag/th.gif" title="Thai (tha)"/>
                     </xsl:when>
                       <xsl:otherwise>
                         <xsl:value-of select="@xml:lang"/>

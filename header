@@ -36,7 +36,7 @@
 			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
 		})();
 	</script>
-	<link href="wnrdf.css" media="all" rel="stylesheet" type="text/css">
+	<link href="/wnrdf.css" media="all" rel="stylesheet" type="text/css">
 </head>
 
 <body class="wordnet" id="home">
@@ -56,6 +56,8 @@
 <li class="normal level1"><a href="/wordnet/news/"><span>News</span></a></li>
 
 <li class="externallink normal level1"><a href="http://wordnetweb.princeton.edu/perl/webwn" target="_self"><span>Use WordNet online</span></a></li>
+
+<li class="externallink normal selected level1"><a href="http://wordnet-rdf.princeton.edu/" target="_self"><span>WordNet RDF</span></a></li>
 
 <li class="normal level1"><a href="/wordnet/download/"><span>Download</span></a></li>
 

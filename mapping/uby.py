@@ -1,5 +1,5 @@
 # Usage:
-#   zcat wn.nt.gz | grep externalReference | python mapping/uby.py | python WNFromRDF.py | sqlite3 wordnet_3.1+.db
+#   zcat wn.nt.gz | grep externalReference | python uby.py | python ../WNFromRDF.py | sqlite3 ../wordnet_3.1+.db
 import sqlite3
 from urllib import quote_plus
 import sys
@@ -7,9 +7,9 @@ import sys
 prefix = "http://wordnet.princeton.edu/rdf/"
 wn_version = "wn31"
 
-conn = sqlite3.connect("wordnet_3.1+.db")
+conn = sqlite3.connect("../wordnet_3.1+.db")
 cursor = conn.cursor()
-conn2 = sqlite3.connect("mapping/mapping.db")
+conn2 = sqlite3.connect("mapping.db")
 cursor2 = conn2.cursor()
 
 pos_string = {
@@ -38,7 +38,7 @@ for line in sys.stdin:
     elif "Synset" in subj:
         pos = pos_string[obj2] 
         synsetid = "%08d-%s" % ( int(obj3[:-1]), pos)
-        cursor2.execute("select wn31 from wn30 where wn30=?",(synsetid,))
+        cursor2.execute("select wn31 from wn31 where wn30=?",(synsetid,))
         row = cursor2.fetchone()
         if row:
             wn31, = row
@@ -46,7 +46,7 @@ for line in sys.stdin:
         elif pos == "a":
             pos = "s" 
             synsetid = "%08d-%s" % (int(obj3[:-1]), pos)
-            cursor2.execute("select wn31 from wn30 where wn30=?",(synsetid,))
+            cursor2.execute("select wn31 from wn31 where wn30=?",(synsetid,))
             row = cursor2.fetchone()
             if row:
                 wn31, = row

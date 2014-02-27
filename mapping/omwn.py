@@ -1,5 +1,5 @@
 # Execute as
-#   python mapping/omwn.py | python WNFromRDF.py | sqlite3 wordnet_3.1+.db
+#   python omwn.py | python ../WNFromRDF.py | sqlite3 ../wordnet_3.1+.db
 import zipfile
 import sys
 from os.path import exists
@@ -8,8 +8,8 @@ import sqlite3
 wn_prefix = "http://wordnet.princeton.edu/rdf/"
 wn_version = "wn31"
 
-if not exists("mapping/all.zip"):
-    sys.stderr.write("Please download http://www.casta-net.jp/~kuribayashi/multi/all.zip\n")
+if not exists("all.zip"):
+    print "Please download http://www.casta-net.jp/~kuribayashi/multi/all.zip"
     sys.exit()
 
 langs = { ('als','als'): 'sqi',
@@ -35,9 +35,9 @@ langs = { ('als','als'): 'sqi',
         ('tha','tha'): 'tha'
         }
 
-all_zip = zipfile.ZipFile('mapping/all.zip')
+all_zip = zipfile.ZipFile('all.zip')
 
-conn = sqlite3.connect("mapping/mapping.db")
+conn = sqlite3.connect("mapping.db")
 cursor = conn.cursor()
 
 for (folder_key, file_key), lang in langs.items():
@@ -48,7 +48,7 @@ for (folder_key, file_key), lang in langs.items():
                 synsetid, prop, obj = line.split("\t")
                 if prop.endswith("lemma"):
                     pos = synsetid[-1]
-                    cursor.execute("select wn31 from wn30 where wn30=?",(synsetid,))
+                    cursor.execute("select wn31 from wn31 where wn30=?",(synsetid,))
                     rows = cursor.fetchall()
                     if not rows:
                         sys.stderr.write("Lost id: %s (%s, %s)\n" % (synsetid, lang, obj.strip()))

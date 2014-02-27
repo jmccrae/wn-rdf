@@ -7,9 +7,9 @@ import getopt
 
 __author__ = 'jmccrae'
 
-prefix = "http://wordnet.princeton.edu/rdf/"
+prefix = "http://wordnet-rdf.princeton.edu/"
 lemon = Namespace("http://www.monnet-project.eu/lemon#")
-wn_ontology = Namespace("http://wordnet.princeton.edu/rdf/ontology#")
+wn_ontology = Namespace("http://wordnet-rdf.princeton.edu/ontology#")
 wn_version = "wn31"
 
 
@@ -146,7 +146,7 @@ def synset_name(offset, pos):
     @param pos: The part of speech (as a single letter)
     @return: A rdflib URI of the synset name
     """
-    return URIRef("%s%s-%09d-%s" % (prefix, wn_version, offset, pos))
+    return URIRef("%s%s/%09d-%s" % (prefix, wn_version, offset, pos))
 
 
 def entry_name(lemma, pos, fragment=None):
@@ -158,9 +158,9 @@ def entry_name(lemma, pos, fragment=None):
     @return: A rdflib URI for this entry
     """
     if fragment is None:
-        return URIRef("%s%s-%s" % (prefix, quote_plus(lemma), pos))
+        return URIRef("%s%s/%s-%s" % (prefix, wn_version, quote_plus(lemma), pos))
     else:
-        return URIRef("%s%s-%s#%s" % (prefix, quote_plus(lemma), pos, fragment.replace(":", "-")))
+        return URIRef("%s%s/%s-%s#%s" % (prefix, wn_version, quote_plus(lemma), pos, fragment.replace(":", "-")))
 
 
 def ontology_name(name):
@@ -188,6 +188,26 @@ def translate_to_lexvo(sensekey, pos):
     while key.endswith("_"):
         key = key[:-1]
     return URIRef("http://www.lexvo.org/page/wordnet/30/%s/%s_%s" % (pos, quote_plus(lemma), key))
+
+def pos2number(pos):
+    """
+    Return the numeric part of speech or zero for unknown for a single letter code
+    """
+    if pos == 'n':
+        return 1
+    elif pos == 'v':
+        return 2
+    elif pos == 'a':
+        return 3
+    elif pos == 'r':
+        return 4
+    elif pos == 's':
+        return 3
+    elif pos == 'p':
+        return 4
+    else:
+        return 0
+
 
 def synset(context, offset, graph=None):
     """ 
@@ -249,7 +269,7 @@ def synset(context, offset, graph=None):
     try:
         cursor.execute("select property, object from synsettriples where synsetid=?",(offset,))
         for p, o in cursor.fetchall():
-            graph.add((synset_uri, from_n3(p), from_n3(o)))
+            graph.add((synset_uri, URIRef(p), from_n3(o)))
     except Exception as e:
         print (e)
 
