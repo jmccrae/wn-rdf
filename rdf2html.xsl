@@ -45,7 +45,7 @@
             </a>
             <xsl:apply-templates select="lemon:LexicalEntry"/>
             <xsl:apply-templates select="wordnet-ontology:Synset"/>
-            <small class="license_link"><a href="license.html">License Information</a></small>
+            <small class="license_link"><a href="/license.html">License Information</a></small>
         </span>
     </xsl:template>
 

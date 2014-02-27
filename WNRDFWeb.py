@@ -15,6 +15,7 @@ import multiprocessing
 import getopt
 import time
 from os.path import exists
+import sqlite3
 
 __author__ = 'jmccrae'
 
@@ -253,6 +254,29 @@ class WNRDFServer:
                     return self.send501(start_response)
             start_response('200 OK', [('Content-type', self.mime_types[mime]),('Vary','Accept'), ('Content-length', str(len(content)))])
             return [content]
+        elif re.match("/wn30/(\d{8}\-[nvarsp])(|\.nt|\.html|\.rdf|\.ttl|\.json)$", uri):
+            (synset_id, ext), = re.findall("/wn30/(\d{8}\-[nvarsp])(|\.nt|\.html|\.rdf|\.ttl|\.json)$", uri)
+            with sqlite3.connect('mapping/mapping.db') as conn:
+                c = conn.cursor()
+                c.execute("select wn31 from wn30 where wn30=?", (synset_id,))
+                row = c.fetchone()
+                if row:
+                    wn31, = row
+                    return self.send302(start_response, "/wn31/%s-%s" % (wn31, synset_id[-1]))
+                else:
+                    return self.send404(start_response)
+        elif re.match("/wn20/(\d{8}\-[nvarsp])(|\.nt|\.html|\.rdf|\.ttl|\.json)$", uri):
+            (synset_id, ext), = re.findall("/wn20/(\d{8}\-[nvarsp])(|\.nt|\.html|\.rdf|\.ttl|\.json)$", uri)
+            print(synset_id)
+            with sqlite3.connect('mapping/mapping.db') as conn:
+                c = conn.cursor()
+                c.execute("select wn31 from wn30 join wn20 on wn30.wn30 = wn20.wn30 where wn20=?", (synset_id,))
+                row = c.fetchone()
+                if row:
+                    wn31, = row
+                    return self.send302(start_response, "/wn31/%s-%s" % (wn31, synset_id[-1]))
+                else:
+                    return self.send404(start_response)
         elif uri == "/search":
             start_response('200 OK', [('Content-type', 'text/html')])
             if 'QUERY_STRING' in environ:
@@ -323,7 +347,7 @@ class WNRDFServer:
                 yield "<tr class='rdf_search_full'><td><a href='%s/%s-%s'>%s</a> (%s)</td><td><a href='%s/%s-%s'>%s</a></td></tr>" % \
                       (WNRDF.wn_version, lemma, pos, lemma, pos, WNRDF.wn_version, synsetid, pos, self.synset_label(cursor, synsetid))
             else:
-                yield "<tr class='rdf_search_empty'><td></td><td><a href='%s-%s-%s'>%s</a></td></tr>" % \
+                yield "<tr class='rdf_search_empty'><td></td><td><a href='%s/%s-%s'>%s</a></td></tr>" % \
                       (WNRDF.wn_version, synsetid, pos, self.synset_label(cursor, synsetid))
 
     @staticmethod
