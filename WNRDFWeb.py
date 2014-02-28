@@ -256,7 +256,7 @@ class WNRDFServer:
             return [content]
         elif re.match("/wn30/(\d{8}\-[nvarsp])(|\.nt|\.html|\.rdf|\.ttl|\.json)$", uri):
             (synset_id, ext), = re.findall("/wn30/(\d{8}\-[nvarsp])(|\.nt|\.html|\.rdf|\.ttl|\.json)$", uri)
-            with sqlite3.connect('mapping/mapping.db') as conn:
+            with sqlite3.connect(resolve('mapping/mapping.db')) as conn:
                 c = conn.cursor()
                 c.execute("select wn31 from wn30 where wn30=?", (synset_id,))
                 row = c.fetchone()
@@ -268,7 +268,7 @@ class WNRDFServer:
         elif re.match("/wn20/(\d{8}\-[nvarsp])(|\.nt|\.html|\.rdf|\.ttl|\.json)$", uri):
             (synset_id, ext), = re.findall("/wn20/(\d{8}\-[nvarsp])(|\.nt|\.html|\.rdf|\.ttl|\.json)$", uri)
             print(synset_id)
-            with sqlite3.connect('mapping/mapping.db') as conn:
+            with sqlite3.connect(resolve('mapping/mapping.db')) as conn:
                 c = conn.cursor()
                 c.execute("select wn31 from wn30 join wn20 on wn30.wn30 = wn20.wn30 where wn20=?", (synset_id,))
                 row = c.fetchone()

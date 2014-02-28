@@ -53,6 +53,75 @@ format may be downloaded <a href="wn31.nt.gz">here</a>. Please refer to the <a h
     information</a>
 </p>
 
+<h3>WordNet Identifiers</h3>
+
+<p>Words are identified by means of the following URI scheme:</p>
+
+<p><tt>
+    http://wordnet-rdf.princeton.edu/wn31/word-[nvarsp]
+</tt></p>
+
+<p>Where <tt>[nvarsp]</tt> is the part-of-speech. Similarly synsets are identified#
+as follows</p>
+
+<p><tt>
+    http://wordnet-rdf.princeton.edu/wn31/[9 digit code]-[nvarsp]
+</tt></p>
+
+Where the 9-digit code is the identifier of the synset. The first digit 
+of the synset identifies the part-of-speech according to the following table
+
+<table>
+    <tr>
+        <th width="200px">Part-of-speech</th><th>Letter code</th><th>Numeric code</th>
+    </tr>
+    <tr>
+        <td>Noun</td><td>n</td><td>1</td>
+    </tr>
+    <tr>
+        <td>Verb</td><td>v</td><td>2</td>
+    </tr>
+    <tr>
+        <td>Adjective</td><td>a</td><td>3</td>
+    </tr>
+    <tr>
+        <td>Adverb</td><td>r</td><td>4</td>
+    </tr>
+    <tr>
+        <td>Adjective Satellite</td><td>s</td><td>3</td>
+    </tr>
+    <tr>
+        <td>Phrase</td><td>p</td><td>4</td>
+    </tr>
+</table>
+
+<p>Each file may be downloaded in a given format by adding a file extension to the URL. 
+For example, adding <tt>.json</tt> to the URL gives the JSON-LD version of the word
+or synset, e.g.,</p>
+
+<p><tt><a href="/wn31/100001740-n.json">
+    http://wordnet-rdf.princeton.edu/wn31/100001740-n.json
+</a></tt></p>
+    
+<p>The following formats are supported:</p>
+
+<ul>
+    <li><tt>.html</tt>: HTML+RDFa</li>
+    <li><tt>.rdf</tt>: RDF/XML</li>
+    <li><tt>.ttl</tt>: Turtle</li>
+    <li><tt>.json</tt>: JSON-LD</li>
+</ul>
+
+<p>It is also possible to use synset identifiers from WordNet 2.0 and WordNet 3.0.
+The URIs use the 8-digit synset code and the part-of-speech letter code, for example
+as follows:</p>
+
+<p><tt>
+    <a href="/wn20/00001740-a">http://wordnet-rdf.princeton.edu/wn20/00001740-a</a><br>
+    <a href="/wn30/00001740-a">http://wordnet-rdf.princeton.edu/wn30/00001740-a</a>
+</tt></p>
+
+
 <h3>Credits</h3>
 
 <p>WordNet was converted into RDF by <a href="http://john.mccr.ae">John P. McCrae</a> of the <a href="http://www.sc.cit-ec.uni-bielefeld.de">Semantic Computing group</a> of the <a href="http://www.uni-bielefeld.de">University Bielefeld</a>. All code is available at <a href="http://github.com/jmccrae/wn-rdf">GitHub</a>.</p>
