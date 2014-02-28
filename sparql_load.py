@@ -6,7 +6,7 @@ import os.path
 import sys
 
 if __name__ == "__main__":
-    identifier = URIRef("http://wordnet.princeton.edu/rdf/")
+    identifier = URIRef("http://wordnet-rdf.princeton.edu/")
     store = plugin.get('Sleepycat', Store)(sys.argv[1])
     path = os.getcwd() + "/" + sys.argv[1]
     assert store.open(sys.argv[1], create=True) == VALID_STORE
