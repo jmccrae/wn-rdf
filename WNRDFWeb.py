@@ -215,7 +215,7 @@ class WNRDFServer:
             if len(synset_id) == 8:
                 synset_id = str(WNRDF.pos2number(uri[-1])) + synset_id
                 return self.send302(start_response,"/%s/%s-%s" % (WNRDF.wn_version, synset_id, uri[-1]))
-            graph = WNRDF.synset(self.wordnet_context, int(synset_id))
+            graph = WNRDF.synset(self.wordnet_context, int(synset_id), extras=mime == "html")
             if graph is None:
                 return self.send404(start_response)
             title = ', '.join(sorted([str(o) for _, _, o in graph.triples((None, RDFS.label, None))]))
@@ -340,15 +340,15 @@ class WNRDFServer:
     def build_search_table(self, values_sorted, cursor):
         last_lemma = ""
         last_pos = ""
-        for lemma, pos, synsetid in values_sorted:
+        for lemma, pos, synsetid, definition in values_sorted:
             if not lemma == last_lemma or not pos == last_pos:
                 last_lemma = lemma
                 last_pos = pos
-                yield "<tr class='rdf_search_full'><td><a href='%s/%s-%s'>%s</a> (%s)</td><td><a href='%s/%s-%s'>%s</a></td></tr>" % \
-                      (WNRDF.wn_version, lemma, pos, lemma, pos, WNRDF.wn_version, synsetid, pos, self.synset_label(cursor, synsetid))
+                yield "<tr class='rdf_search_full'><td><a href='%s/%s-%s'>%s</a> (%s)</td><td><a href='%s/%s-%s'>%s</a> &mdash; <span class='definition'>%s</span></td></tr>" % \
+                      (WNRDF.wn_version, lemma, pos, lemma, pos, WNRDF.wn_version, synsetid, pos, self.synset_label(cursor, synsetid), definition)
             else:
-                yield "<tr class='rdf_search_empty'><td></td><td><a href='%s/%s-%s'>%s</a></td></tr>" % \
-                      (WNRDF.wn_version, synsetid, pos, self.synset_label(cursor, synsetid))
+                yield "<tr class='rdf_search_empty'><td></td><td><a href='%s/%s-%s'>%s</a> &mdash; <span class='definition'>%s</span></td></tr>" % \
+                      (WNRDF.wn_version, synsetid, pos, self.synset_label(cursor, synsetid), definition)
 
     @staticmethod
     def synset_label(cursor, offset):
@@ -360,16 +360,16 @@ class WNRDFServer:
         cursor = context.conn.cursor()
         try:
             cursor.execute(
-                "select sensekey,synsetid,lemma from words inner join senses on senses.wordid=words.wordid "
+                "select sensekey,senses.synsetid,lemma,definition from words inner join senses, synsets on senses.wordid=words.wordid and senses.synsetid = synsets.synsetid "
                 "where soundex(lemma) = soundex(?)",
                 (query_lemma,))
         except: # Only if no soundex
             print ("Soundex not supported, please install a newer version of SQLite")
             cursor.execute(
-                "select sensekey,synsetid,lemma from words inner join senses on senses.wordid=words.wordid "
+                "select sensekey,senses.synsetid,lemma,definition from words inner join senses, synsets on senses.wordid=words.wordid and senses.synsetid = synsets.synsetid "
                 "where lemma = ?",
                 (query_lemma,))
-        values = [(str(lemma), str(sensekey[-1]), str(synsetid)) for sensekey, synsetid, lemma in cursor.fetchall()]
+        values = [(str(lemma), str(sensekey[-1]), str(synsetid), str(description)) for sensekey, synsetid, lemma, description in cursor.fetchall()]
         values_sorted = sorted(values, key=lambda s: self.levenshtein(s[0], query_lemma))[1:50]
         html = "".join(self.build_search_table(values_sorted, cursor))
         return self.render_html("Search results", "<h1>Search results</h1> <table class='rdf_search'><thead><tr><th>Word</th><th>Synset</th></tr></thead>"

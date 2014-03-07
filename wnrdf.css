@@ -121,5 +121,8 @@ tr.sparql_body {
     border-top: 3px solid rgb(231,231,231);
 }
 
-
+.definition {
+    font-style: italic;
+    font-size: 90%;
+}
 

@@ -140,6 +140,52 @@
                                     </xsl:choose>
                                 </a>
                             </xsl:when>
+                            <xsl:when test="rdf:Description">
+                                <!-- This only happens for synset links so is not quite general yet -->
+                                <a>
+                                    <xsl:attribute name="href">
+                                        <xsl:value-of select="rdf:Description/@rdf:about"/>
+                                    </xsl:attribute>
+                                    <xsl:attribute name="property">
+                                        <xsl:value-fo select="concat(namespace-uri(), local-name())"/>
+                                    </xsl:attribute>
+                                    <xsl:choose>
+                                        <xsl:when
+                                            test="contains(rdf:Description/@rdf:about,'&wordnet-ontology;')">
+                                            <xsl:value-of
+                                                select="translate(substring-after(rdf:Description/@rdf:about,'#'),'_',' ')"/>
+                                        </xsl:when>
+                                        <xsl:when test="contains(rdf:Description/@rdf:about,'&wordnet;')">
+                                            <xsl:value-of
+                                                select="substring-after(rdf:Description/@rdf:about,'&wordnet;')"/>
+                                        </xsl:when>
+                                        <xsl:when test="contains(rdf:Description/@rdf:about,'&verbnet;')">
+                                            <xsl:value-of
+                                                select="concat('verbnet:',substring-after(rdf:Description/@rdf:about,'&verbnet;'))"/>
+                                        </xsl:when>
+                                        <xsl:when test="contains(rdf:Description/@rdf:about,'&lemonUby;')">
+                                            <xsl:value-of
+                                                select="concat('lemonUby:',substring-after(rdf:Description/@rdf:about,'&lemonUby;'))"/>
+                                        </xsl:when>
+                                        <xsl:when test="contains(rdf:Description/@rdf:about,'&w3c-wn;')">
+                                            <xsl:value-of
+                                                select="concat('w3c:',substring-after(rdf:Description/@rdf:about,'&w3c-wn;'))"/>
+                                        </xsl:when>
+                                        <xsl:when test="contains(rdf:Description/@rdf:about,'&lexvo-wn;')">
+                                            <xsl:value-of
+                                                select="concat('lexvo:',substring-after(rdf:Description/@rdf:about,'&lexvo-wn;'))"/>
+                                        </xsl:when>
+                                           <xsl:otherwise>
+                                               <xsl:value-of select="rdf:Description/@rdf:about"/>
+                                        </xsl:otherwise>
+                                    </xsl:choose>
+                                </a>
+                                <table class="inner_rdf">
+                                    <xsl:for-each select="rdf:Description">
+                                        <xsl:call-template name="properties"/>
+                                    </xsl:for-each>
+                                </table>
+                            </xsl:when>
                             <xsl:otherwise>
                                 <xsl:attribute name="property">
                                     <xsl:value-of select="concat(namespace-uri(),local-name())"/>

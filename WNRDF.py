@@ -209,7 +209,7 @@ def pos2number(pos):
         return 0
 
 
-def synset(context, offset, graph=None):
+def synset(context, offset, graph=None, extras=False):
     """ 
     Return an RDF graph for a synset given an offset value
     @param context: A WNRDFContext object
@@ -266,6 +266,11 @@ def synset(context, offset, graph=None):
             pos2, = row
             synset_uri2 = synset_name(synsetid2,pos2)
             graph.add((synset_uri, wn_ontology.term(context.linktypes[linkid]), synset_uri2))
+            if extras:
+                cursor.execute("select definition from synsets where synsetid=?", (synsetid2,))
+                def2, = cursor.fetchone()
+                graph.add((synset_uri2, wn_ontology.gloss, Literal(def2, lang=context.lang)))
+
     try:
         cursor.execute("select property, object from synsettriples where synsetid=?",(offset,))
         for p, o in cursor.fetchall():
