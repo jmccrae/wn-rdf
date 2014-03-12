@@ -16,6 +16,7 @@ import getopt
 import time
 from os.path import exists
 import sqlite3
+import cgi
 
 __author__ = 'jmccrae'
 
@@ -370,10 +371,13 @@ class WNRDFServer:
                 "where lemma = ?",
                 (query_lemma,))
         values = [(str(lemma), str(sensekey[-1]), str(synsetid), str(description)) for sensekey, synsetid, lemma, description in cursor.fetchall()]
-        values_sorted = sorted(values, key=lambda s: self.levenshtein(s[0], query_lemma))[0:49]
-        html = "".join(self.build_search_table(values_sorted, cursor))
-        return self.render_html("Search results", "<h1>Search results</h1> <table class='rdf_search'><thead><tr><th>Word</th><th>Synset</th></tr></thead>"
+        if values:
+            values_sorted = sorted(values, key=lambda s: self.levenshtein(s[0], query_lemma))[0:49]
+            html = "".join(self.build_search_table(values_sorted, cursor))
+            return self.render_html("Search results", "<h1>Search results</h1> <table class='rdf_search'><thead><tr><th>Word</th><th>Synset</th></tr></thead>"
                                 + html + "</table>")
+        else:
+            return self.render_html("Search results", "<h1>Search results</h1> <p>Nothing found for <b>%s</b></p>" % cgi.escape(query_lemma))
 
 
 def application(environ, start_response):
