@@ -211,12 +211,16 @@ class WNRDFServer:
         elif uri == "/wnrdf.css" or uri == "/sparql/wnrdf.css":
             start_response('200 OK', [('Content-type', 'text/css')])
             return [open(resolve("wnrdf.css")).read()]
-        elif re.match("/%s/(\d+)\-[nvarsp](|\.nt|\.html|\.rdf|\.ttl|\.json)$" % WNRDF.wn_version, uri):
-            synset_id = re.findall("/%s/(\d+)\-[nvarsp]" % WNRDF.wn_version, uri)[0]
+        elif re.match("/%s/(\d+)\-[nvarspNVARSP](|\.nt|\.html|\.rdf|\.ttl|\.json)$" % WNRDF.wn_version, uri):
+            synset_id = re.findall("/%s/(\d+)\-[nvarspNVARSP]" % WNRDF.wn_version, uri)[0]
             if len(synset_id) == 8:
                 synset_id = str(WNRDF.pos2number(uri[-1])) + synset_id
                 return self.send302(start_response,"/%s/%s-%s" % (WNRDF.wn_version, synset_id, uri[-1]))
-            graph = WNRDF.synset(self.wordnet_context, int(synset_id), extras=mime == "html")
+            translate = False
+            if synset_id[-1].isupper():
+                synset_id[-1] = synset_id[-1].lower()
+                translate = True
+            graph = WNRDF.synset(self.wordnet_context, int(synset_id), extras=mime == "html", translate=translate)
             if graph is None:
                 return self.send404(start_response)
             title = ', '.join(sorted([str(o) for _, _, o in graph.triples((None, RDFS.label, None))]))
@@ -229,14 +233,14 @@ class WNRDFServer:
                     return self.send501(start_response)
             start_response('200 OK', [('Content-type', self.mime_types[mime]),('Vary','Accept'), ('Content-length', str(len(content)))])
             return [content]
-        elif re.match("/title/%s/(\d+)\-[nvarsp](|\.nt|\.html|\.rdf|\.ttl|\.json)$" % WNRDF.wn_version, uri):
-            synset_id = re.findall("/%s\-(\d+)\-[nvarsp]" % WNRDF.wn_version, uri)[0]
-            graph = WNRDF.synset(self.wordnet_context, int(synset_id))
-            if graph is None:
-                return self.send404(start_response)
-            title = ', '.join(sorted([str(o) for _, _, o in graph.triples((None, RDFS.label, None))])) 
-            start_response('200 OK', [('Content-type', 'text/plain')])
-            return [title]
+#        elif re.match("/title/%s/(\d+)\-[nvarsp](|\.nt|\.html|\.rdf|\.ttl|\.json)$" % WNRDF.wn_version, uri):
+#            synset_id = re.findall("/%s\-(\d+)\-[nvarsp]" % WNRDF.wn_version, uri)[0]
+#            graph = WNRDF.synset(self.wordnet_context, int(synset_id))
+#            if graph is None:
+#                return self.send404(start_response)
+#            title = ', '.join(sorted([str(o) for _, _, o in graph.triples((None, RDFS.label, None))])) 
+#            start_response('200 OK', [('Content-type', 'text/plain')])
+#            return [title]
         elif re.match("/%s/(.*)\-[nvarsp](|\.nt|\.html|\.rdf|\.ttl|\.json)$" % WNRDF.wn_version, uri):
             lemma_pos, = re.findall("^/%s/(.*)\-([nvarsp])" % WNRDF.wn_version, uri)
             lemma, pos = lemma_pos
