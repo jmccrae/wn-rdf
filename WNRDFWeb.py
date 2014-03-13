@@ -60,12 +60,12 @@ def resolve(fname):
      
 
 class WNRDFServer:
-    def __init__(self, db):
+    def __init__(self, db, mapping_db):
         self.mime_types = dict(
             [('html', 'text/html'), ('pretty-xml', 'application/rdf+xml'), ('turtle', 'text/turtle'),
              ('nt', 'text/plain'), ('json-ld', 'application/json'), ('sparql', 'application/sparql-results+xml'
                  )])
-        self.wordnet_context = WNRDF.WNRDFContext(db)
+        self.wordnet_context = WNRDF.WNRDFContext(db, mapping_db)
         self.header = open(resolve("header")).read()
         self.footer = open(resolve("footer")).read()
 
@@ -338,18 +338,25 @@ class WNRDFServer:
 
         return current[n]
 
-    def build_search_table(self, values_sorted, cursor):
+    def build_search_table(self, values_sorted, cursor, mc):
         last_lemma = ""
         last_pos = ""
         for lemma, pos, synsetid, definition in values_sorted:
+            mc.execute("select release from wn31r where internal=?", (synsetid,))
+            r = mc.fetchone()
+            if r:
+                synsetid2, = r
+            else:
+                synsetid2 = synsetid
+                pos = pos.upper()
             if not lemma == last_lemma or not pos == last_pos:
                 last_lemma = lemma
                 last_pos = pos
                 yield "<tr class='rdf_search_full'><td><a href='%s/%s-%s'>%s</a> (%s)</td><td><a href='%s/%s-%s'>%s</a> &mdash; <span class='definition'>%s</span></td></tr>" % \
-                      (WNRDF.wn_version, lemma, pos, lemma, pos, WNRDF.wn_version, synsetid, pos, self.synset_label(cursor, synsetid), definition)
+                      (WNRDF.wn_version, lemma, pos, lemma, pos, WNRDF.wn_version, synsetid2, pos, self.synset_label(cursor, synsetid), definition)
             else:
                 yield "<tr class='rdf_search_empty'><td></td><td><a href='%s/%s-%s'>%s</a> &mdash; <span class='definition'>%s</span></td></tr>" % \
-                      (WNRDF.wn_version, synsetid, pos, self.synset_label(cursor, synsetid), definition)
+                      (WNRDF.wn_version, synsetid2, pos, self.synset_label(cursor, synsetid), definition)
 
     @staticmethod
     def synset_label(cursor, offset):
@@ -371,9 +378,10 @@ class WNRDFServer:
                 "where lemma = ?",
                 (query_lemma,))
         values = [(str(lemma), str(sensekey[-1]), str(synsetid), str(description)) for sensekey, synsetid, lemma, description in cursor.fetchall()]
+        mc = context.mconn.cursor()
         if values:
             values_sorted = sorted(values, key=lambda s: self.levenshtein(s[0], query_lemma))[0:49]
-            html = "".join(self.build_search_table(values_sorted, cursor))
+            html = "".join(self.build_search_table(values_sorted, cursor, mc))
             return self.render_html("Search results", "<h1>Search results</h1> <table class='rdf_search'><thead><tr><th>Word</th><th>Synset</th></tr></thead>"
                                 + html + "</table>")
         else:
@@ -381,12 +389,12 @@ class WNRDFServer:
 
 
 def application(environ, start_response):
-    server = WNRDFServer(resolve('wordnet_3.1+.db'))
+    server = WNRDFServer(resolve('wordnet_3.1+.db'), resolve('mapping/mapping.db'))
     return server.application(environ, start_response)
 
 if __name__ == "__main__":
     opts = dict(getopt.getopt(sys.argv[1:],'qd:p:')[0])
-    server = WNRDFServer(opts.get('-d','wordnet_3.1+.db'))
+    server = WNRDFServer(opts.get('-d','wordnet_3.1+.db'), opts.get('-m','mapping/mapping.db'))
     
     httpd = make_server('localhost', int(opts.get('-p',8051)), server.application)
 

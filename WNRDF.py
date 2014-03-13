@@ -18,7 +18,7 @@ class WNRDFContext:
     This object avoids some queries to the database
     by pre-querying some small tables, e.g., link types
     """
-    def __init__(self, db_name, lang='eng'):
+    def __init__(self, db_name, mapping_db_name, lang='eng'):
         self.lang = lang
         self.jsonld_context = {
             "@language": lang,
@@ -60,6 +60,7 @@ class WNRDFContext:
         }
         self.conn = sqlite3.connect(db_name)
         cursor = self.conn.cursor()
+        self.mconn = sqlite3.connect(mapping_db_name)
         cursor.execute("select * from lexdomains")
         self.lexdomainid_to_name = dict()
         for lexdomainid, lexdomainname, _ in cursor.fetchall():
@@ -139,14 +140,21 @@ def make_graph():
     return g
 
 
-def synset_name(offset, pos):
+def synset_name(context, offset, pos):
     """
     Name a synset
     @param offset: The synset offset value
     @param pos: The part of speech (as a single letter)
     @return: A rdflib URI of the synset name
     """
-    return URIRef("%s%s/%09d-%s" % (prefix, wn_version, offset, pos))
+    c = context.mconn.cursor()
+    c.execute("select release from wn31r where internal=?", (offset,))
+    row = c.fetchone()
+    if row:
+        offset2, = row
+        return URIRef("%s%s/%09d-%s" % (prefix, wn_version, offset2, pos))
+    else:
+        return URIRef("%s%s/%09d-%s" % (prefix, wn_version, offset, pos.upper()))
 
 
 def entry_name(lemma, pos, fragment=None):
@@ -209,7 +217,7 @@ def pos2number(pos):
         return 0
 
 
-def synset(context, offset, graph=None, extras=False):
+def synset(context, offset, graph=None, extras=False, translate=True):
     """ 
     Return an RDF graph for a synset given an offset value
     @param context: A WNRDFContext object
@@ -221,13 +229,26 @@ def synset(context, offset, graph=None, extras=False):
         graph = make_graph()
     cursor = context.conn.cursor()
 
+    not_translated = False
+    if translate:
+        c = context.mconn.cursor()
+        c.execute("select internal from wn31r where release=?", (offset,))
+        row = c.fetchone()
+        if row:
+            offset, = row
+        else:
+            not_translated = True
+
     # Read the synset information
     cursor.execute("select pos, lexdomainid, definition from synsets where synsetid=?", (offset,)) # no index
     row = cursor.fetchone()
     if row is None:
         return None
     pos, lexdomainid, definition = row
-    synset_uri = synset_name(offset, pos)
+    if not_translated:
+        synset_uri = synset_name(context, offset, pos.upper())
+    else:
+        synset_uri = synset_name(context, offset, pos)
     graph.add((synset_uri, RDF.type, wn_ontology.Synset))
     graph.add((synset_uri, wn_ontology.part_of_speech, wn_ontology.term(context.postypes[pos])))
     graph.add((synset_uri, wn_ontology.lexical_domain, wn_ontology.term(context.lexdomainid_to_name[lexdomainid])))
@@ -264,7 +285,7 @@ def synset(context, offset, graph=None, extras=False):
             sys.stderr.write("Synset %s referred to but not found " % synsetid2)
         else:
             pos2, = row
-            synset_uri2 = synset_name(synsetid2,pos2)
+            synset_uri2 = synset_name(context, synsetid2,pos2)
             graph.add((synset_uri, wn_ontology.term(context.linktypes[linkid]), synset_uri2))
             if extras:
                 cursor.execute("select definition from synsets where synsetid=?", (synsetid2,))
@@ -351,7 +372,7 @@ def entry(context, lemma, pos, graph=None):
             sense_uri = entry_name(cased_lemma, pos, sensekey2)
             graph.add((entry_uri, lemon.sense, sense_uri))
             graph.add((sense_uri, RDF.type, lemon.LexicalSense))
-            graph.add((sense_uri, lemon.reference, synset_name(synsetid, pos)))
+            graph.add((sense_uri, lemon.reference, synset_name(context, synsetid, pos)))
             graph.add((sense_uri, wn_ontology.sense_number, Literal(sensenum)))
             graph.add((sense_uri, wn_ontology.tag_count, Literal(tagcount)))
             graph.add((sense_uri, wn_ontology.lex_id, Literal(lexid)))
@@ -434,7 +455,7 @@ def entry(context, lemma, pos, graph=None):
 
 def main(argv=None):
     opts = dict(getopt.getopt(argv[1:],'qd:l:o:')[0])
-    context = WNRDFContext(opts.get('-d','wordnet_3.1+.db'))
+    context = WNRDFContext(opts.get('-d','wordnet_3.1+.db'),opts.get('-m','mapping/mapping.db'))
     context.dump(file=opts.get('-o','wordnet.nt'), verbose=('-q' not in opts), limit=int(opts.get('-l',-1)))
 
 
