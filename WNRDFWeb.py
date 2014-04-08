@@ -7,7 +7,7 @@ import lxml.etree as et
 from cStringIO import StringIO
 from wsgiref.simple_server import make_server
 from urlparse import parse_qs
-from urllib import unquote_plus
+from urllib import unquote_plus, urlopen, quote_plus
 from rdflib import RDFS, URIRef, Graph
 from rdflib import plugin
 from rdflib.store import Store, VALID_STORE
@@ -145,39 +145,51 @@ class WNRDFServer:
 
     
     def sparql_query(self, query, mime_type, default_graph_uri, start_response, timeout=10):
-        try:
-            store = plugin.get('Sleepycat', Store)(resolve("store"))
-            identifier = URIRef(WNRDF.prefix[:-1])
-            try:
-                graph = Graph(store, identifier=identifier)
-                parent, child = multiprocessing.Pipe()
-                executor = SPARQLExecutor(query, mime_type, default_graph_uri, child, graph)
-                executor.start()
-                executor.join(timeout)
-                if executor.is_alive():
-                    start_response('503 Service Unavailable', [('Content-type','text/plain')])
-                    executor.terminate()
-                    return "The query could not be processed in time"
-                else:
-                    result_type, result = parent.recv()
-                    if result_type == "error":
-                        return self.send400(start_response)
-                    elif mime_type != "html" or result_type != "sparql":
-                        start_response('200 OK', [('Content-type',self.mime_types[result_type])])
-                        return [str(result)]
-                    else:
-                        start_response('200 OK', [('Content-type','text/html')])
-                        dom = et.parse(StringIO(result))
-                        xslt = et.parse(resolve("sparql2html.xsl"))
-                        transform = et.XSLT(xslt)
-                        newdom = transform(dom)
-                        return self.render_html("SPARQL Results", et.tostring(newdom, pretty_print=True)) 
-            finally:
-                if graph:
-                    graph.close()
-        finally:
-            if store:
-                store.close()
+        result = urlopen("http://localhost:8000/sparql/?query=%s&default-graph-uri=%s" % (quote_plus(query), quote_plus(default_graph_uri)))
+        if result.getcode() == 200:
+            if mime_type != "html":
+                start_response('200 OK' [('Content-type',self.mime_types['sparql'])])
+                return [result.read()]
+            else:
+                start_response('200 OK', [('Content-type','text/html')])
+                dom = et.parse(StringIO(result.read()))
+                xslt = et.parse(resolve("sparql2html.xsl"))
+                transform = et.XSLT(xslt)
+                newdom = transform(dom)
+                return self.render_html("SPARQL Results", et.tostring(newdom, pretty_print=True)) 
+##        try:
+#            store = plugin.get('Sleepycat', Store)(resolve("store"))
+#            identifier = URIRef(WNRDF.prefix[:-1])
+#            try:
+#                graph = Graph(store, identifier=identifier)
+#                parent, child = multiprocessing.Pipe()
+#                executor = SPARQLExecutor(query, mime_type, default_graph_uri, child, graph)
+#                executor.start()
+#                executor.join(timeout)
+#                if executor.is_alive():
+#                    start_response('503 Service Unavailable', [('Content-type','text/plain')])
+#                    executor.terminate()
+#                    return "The query could not be processed in time"
+#                else:
+#                    result_type, result = parent.recv()
+#                    if result_type == "error":
+#                        return self.send400(start_response)
+#                    elif mime_type != "html" or result_type != "sparql":
+#                        start_response('200 OK', [('Content-type',self.mime_types[result_type])])
+#                        return [str(result)]
+#                    else:
+#                        start_response('200 OK', [('Content-type','text/html')])
+#                        dom = et.parse(StringIO(result))
+#                        xslt = et.parse(resolve("sparql2html.xsl"))
+#                        transform = et.XSLT(xslt)
+#                        newdom = transform(dom)
+#                        return self.render_html("SPARQL Results", et.tostring(newdom, pretty_print=True)) 
+#            finally:
+#                if graph:
+#                    graph.close()
+#        finally:
+#            if store:
+#                store.close()
 
 
     def rdfxml_to_html(self, graph, title=""):
@@ -284,7 +296,7 @@ class WNRDFServer:
                     return self.send302(start_response, "/wn31/%s-%s" % (wn31, synset_id[-1]))
                 else:
                     return self.send404(start_response)
-        elif uri == "/search":
+        elif uri == "/search" or uri == "/search/":
             start_response('200 OK', [('Content-type', 'text/html')])
             if 'QUERY_STRING' in environ:
                 qs_parsed = parse_qs(environ['QUERY_STRING'])
