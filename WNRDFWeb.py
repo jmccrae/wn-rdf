@@ -173,9 +173,11 @@ class WNRDFServer:
                         newdom = transform(dom)
                         return self.render_html("SPARQL Results", et.tostring(newdom, pretty_print=True)) 
             finally:
-                graph.close()
+                if graph:
+                    graph.close()
         finally:
-            store.close()
+            if store:
+                store.close()
 
 
     def rdfxml_to_html(self, graph, title=""):
