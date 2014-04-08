@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <!DOCTYPE xsl:stylesheet [
-        <!ENTITY lemon   "http://www.monnet-project.eu/lemon#">
+        <!ENTITY lemon   "http://lemon-model.net/lemon#">
         <!ENTITY wordnet-ontology   "http://wordnet-rdf.princeton.edu/ontology#">
         <!ENTITY wordnet "http://wordnet-rdf.princeton.edu/">
         <!ENTITY rdf   "http://www.w3.org/1999/02/22-rdf-syntax-ns#">

@@ -20,7 +20,7 @@ ontology_uri = URIRef(str(ontology_name(""))[0:-1])
 cursor = context.conn.cursor()
 
 g.add((ontology_uri, RDF.type, OWL.Ontology))
-g.add((ontology_uri, OWL.imports, URIRef("http://www.monnet-project.eu/lemon")))
+g.add((ontology_uri, OWL.imports, URIRef("http://lemon-model.net/lemon")))
 g.add((dcr.datcat, RDF.type, OWL.AnnotationProperty))
 
 def uncamelcase(label):

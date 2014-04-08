@@ -6,7 +6,7 @@ from urllib import unquote_plus
 from os import unlink
 import wn_schema
 
-lemon = "<http://www.monnet-project.eu/lemon#"
+lemon = "<http://lemon-model.net/lemon#"
 wn_ontology = "<http://wordnet-rdf.princeton.edu/ontology#"
 rdfs = "<http://www.w3.org/2000/01/rdf-schema#"
 rdf  = "<http://www.w3.org/1999/02/22-rdf-syntax-ns#"

@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 
 <!DOCTYPE xsl:stylesheet [
-        <!ENTITY lemon   "http://www.monnet-project.eu/lemon#">
+        <!ENTITY lemon   "http://lemon-model.net/lemon#">
         <!ENTITY wordnet-ontology   "http://wordnet-rdf.princeton.edu/ontology#">
         <!ENTITY wordnet "http://wordnet-rdf.princeton.edu/wn31/">
         <!ENTITY rdf   "http://www.w3.org/1999/02/22-rdf-syntax-ns#">
@@ -18,7 +18,7 @@
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
                 xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
-                xmlns:lemon="http://www.monnet-project.eu/lemon#"
+                xmlns:lemon="http://lemon-model.net/lemon#"
                 xmlns:wordnet-ontology="http://wordnet-rdf.princeton.edu/ontology#"
         >
 

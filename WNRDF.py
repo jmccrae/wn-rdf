@@ -8,7 +8,7 @@ import getopt
 __author__ = 'jmccrae'
 
 prefix = "http://wordnet-rdf.princeton.edu/"
-lemon = Namespace("http://www.monnet-project.eu/lemon#")
+lemon = Namespace("http://lemon-model.net/lemon#")
 wn_ontology = Namespace("http://wordnet-rdf.princeton.edu/ontology#")
 wn_version = "wn31"
 

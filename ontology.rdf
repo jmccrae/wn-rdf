@@ -454,7 +454,7 @@
     <rdfs:label xml:lang="en">Adv.all</rdfs:label>
   </rdf:Description>
   <rdf:Description rdf:about="http://wordnet-rdf.princeton.edu/ontology">
-    <owl:imports rdf:resource="http://www.monnet-project.eu/lemon"/>
+    <owl:imports rdf:resource="http://lemon-model.net/lemon"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://wordnet-rdf.princeton.edu/ontology#pertainym">
