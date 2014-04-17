@@ -312,7 +312,7 @@ class WNRDFServer:
                 return ["No query string"]
         elif re.match("/ontology(|.nt|.html|.ttl|.rdf)",uri):
             start_response('200 OK', [('Content-type', self.mime_types[mime]),
-                                      ('Content-length', str(os.stat("ontology" + self.mime_ext[mime]).st_size))])
+                                      ('Content-length', str(os.stat(resolve("ontology" + self.mime_ext[mime])).st_size))])
             return [open(resolve("ontology" + self.mime_ext[mime])).read()]
         elif uri == ("/%s.nt.gz" % WNRDF.wn_version):
             start_response('200 OK', [('Content-type', 'appliction/x-gzip'),
