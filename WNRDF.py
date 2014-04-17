@@ -105,7 +105,7 @@ class WNRDFContext:
             limit_string = " limit %d" % limit
         cursor = self.conn.cursor()
         cursor.execute("select synsetid from synsets" + limit_string)
-        c = context.mconn.cursor()
+        c = self.mconn.cursor()
         for synsetid, in cursor.fetchall():
             c.execute("select internal from wn31r where release=?", (offset,))
             row = c.fetchone()
