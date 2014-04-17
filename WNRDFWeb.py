@@ -65,6 +65,8 @@ class WNRDFServer:
             [('html', 'text/html'), ('pretty-xml', 'application/rdf+xml'), ('turtle', 'text/turtle'),
              ('nt', 'text/plain'), ('json-ld', 'application/ld+json'), ('sparql', 'application/sparql-results+xml'
                  )])
+        self.mime_ext = dict(
+            [('html','.html'), ('pretty-xml', '.rdf'), ('turtle', '.ttl'), ('nt', '.nt')])
         self.wordnet_context = WNRDF.WNRDFContext(db, mapping_db)
         self.header = open(resolve("header")).read()
         self.footer = open(resolve("footer")).read()
@@ -308,10 +310,10 @@ class WNRDFServer:
                     return ["No query"]
             else:
                 return ["No query string"]
-        elif uri == "/ontology":
-            start_response('200 OK', [('Content-type', 'application/rdf+xml'),
-                                      ('Content-length', str(os.stat("ontology.rdf").st_size))])
-            return [open(resolve("ontology.rdf")).read()]
+        elif re.match("/ontology(|.nt|.html|.ttl|.rdf)",uri):
+            start_response('200 OK', [('Content-type', self.mime_types[mime]),
+                                      ('Content-length', str(os.stat("ontology" + self.mime_ext[mime]).st_size))])
+            return [open(resolve("ontology" + self.mime_ext[mime])).read()]
         elif uri == ("/%s.nt.gz" % WNRDF.wn_version):
             start_response('200 OK', [('Content-type', 'appliction/x-gzip'),
                                       ('Content-length', str(os.stat("wordnet.nt.gz").st_size))])

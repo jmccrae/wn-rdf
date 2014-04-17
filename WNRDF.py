@@ -105,8 +105,15 @@ class WNRDFContext:
             limit_string = " limit %d" % limit
         cursor = self.conn.cursor()
         cursor.execute("select synsetid from synsets" + limit_string)
+        c = context.mconn.cursor()
         for synsetid, in cursor.fetchall():
-            graph = synset(self, synsetid)
+            c.execute("select internal from wn31r where release=?", (offset,))
+            row = c.fetchone()
+            if row:
+                synsetid2, translate = row, True
+            else:
+                synsetid2, translate = synsetid, False
+            graph = synset(self, synsetid2, translate=translate)
             graph.serialize(f, "nt")
             if verbose:
                 print(synsetid)
