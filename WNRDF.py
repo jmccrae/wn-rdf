@@ -107,10 +107,11 @@ class WNRDFContext:
         cursor.execute("select synsetid from synsets" + limit_string)
         c = self.mconn.cursor()
         for synsetid, in cursor.fetchall():
-            c.execute("select internal from wn31r where release=?", (offset,))
+            c.execute("select internal from wn31r where release=?", (synsetid,))
             row = c.fetchone()
             if row:
-                synsetid2, translate = row, True
+                synsetid2, = row
+                translate = True
             else:
                 synsetid2, translate = synsetid, False
             graph = synset(self, synsetid2, translate=translate)
