@@ -233,8 +233,7 @@ class WNRDFServer:
                 synset_id = str(WNRDF.pos2number(uri[-1])) + synset_id
                 return self.send302(start_response,"/%s/%s-%s" % (WNRDF.wn_version, synset_id, uri[-1]))
             translate = True
-            if synset_id[-1].isupper():
-                synset_id[-1] = synset_id[-1].lower()
+            if uri[-1].isupper():
                 translate = False
             graph = WNRDF.synset(self.wordnet_context, int(synset_id), extras=mime == "html", translate=translate)
             if graph is None:
