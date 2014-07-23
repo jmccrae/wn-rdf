@@ -9,7 +9,7 @@ wn_prefix = "http://wordnet.princeton.edu/rdf/"
 wn_version = "wn31"
 
 if not exists("all.zip"):
-    print "Please download http://www.casta-net.jp/~kuribayashi/multi/all.zip"
+    print "Please download http://compling.hss.ntu.edu.sg/omw/all.zip"
     sys.exit()
 
 langs = { ('als','als'): 'sqi',

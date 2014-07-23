@@ -78,7 +78,7 @@ All mappings are stored in the `mapping` folder. To run most of the mapping scri
 
 The following mappings can be generated and added to the database
 
-* `omwn`: Translations in 21 languages from [Open Multilingual WordNet](http://casta-net.jp/~kuribayashi/multi/)
+* `omwn`: Translations in 21 languages from [Open Multilingual WordNet](http://compling.hss.ntu.edu.sg/omw/)
 * `uby`: Links to the [_lemon_ version of Uby](http://lemon-model.net/lexica/uby/)
 * `vn`: Links to [VerbNet](http://verbs.colorado.edu/~mpalmer/projects/verbnet.html)
 * `w3c-synsets`: Links to the [W3C version](http://www.w3.org/TR/wordnet-rdf/) of WordNet 2.0
