@@ -1,8 +1,22 @@
 {
     "wn": "http://wordnet-rdf.princeton.edu/ontology#",
     "lemon": "http://lemon-model.net/lemon#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "dc": "http://purl.org/dc/elements/1.1/",
+    "ili": "http://ili.globalwordnet.org/ili#",
     "gloss" : "http://wordnet-rdf.princeton.edu/ontology#gloss",
-    "hyponym" : "http://wordnet-rdf.princeton.edu/ontology#hyponym",
+    "hyponym" : {
+        "@id": "http://wordnet-rdf.princeton.edu/ontology#hyponym",
+        "@type": "@id"
+    },
+    "attribute" : {
+        "@id": "http://wordnet-rdf.princeton.edu/ontology#attribute",
+        "@type": "@id"
+    },
+    "antonym" : {
+        "@id": "http://wordnet-rdf.princeton.edu/ontology#antonym",
+        "@type": "@id"
+    },
     "partOfSpeech" : {
         "@id": "http://wordnet-rdf.princeton.edu/ontology#partOfSpeech",
         "@type": "@id"
@@ -12,5 +26,13 @@
         "@container": "@index"
     },
     "lemma" : "wn:lemma",
-    "senses" : "lemon:isSenseOf"
+    "senses" : "lemon:isSenseOf",
+    "label" : "rdfs:label",
+    "language" : "dc:language",
+    "owner": "dc:publisher",
+    "version": "dc:version",
+    "iliRef": {
+        "@id": "http://ili.globalwordnet.org/schema#iliRef",
+        "@type": "@id"
+    }
 }

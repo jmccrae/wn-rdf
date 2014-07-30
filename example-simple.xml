@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE LexicalResource SYSTEM "WN-LMF-simple.dtd">
 <LexicalResource>
-    <Lexicon label="Princeton WordNet" language="eng">
+    <Lexicon label="Princeton WordNet" language="eng" owner="Princeton" version="3.1">
         <LexicalEntry id="w1">
             <Lemma writtenForm="entity" partOfSpeech="n"/>
             <Sense id="pwn-100001740-n-1" synset="pwn-100001740-n"/>

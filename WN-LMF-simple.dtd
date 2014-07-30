@@ -2,8 +2,10 @@
 <!ELEMENT LexicalResource (Lexicon+)>
 <!ELEMENT Lexicon (LexicalEntry+, Synset*)>
 <!ATTLIST Lexicon
-label CDATA #IMPLIED
-language CDATA #REQUIRED>
+label CDATA #REQUIRED
+language CDATA #REQUIRED
+owner CDATA #REQUIRED
+version CDATA #REQUIRED>
 <!ELEMENT LexicalEntry (Lemma, Sense*)>
 <!ATTLIST LexicalEntry
 id ID #IMPLIED>
