@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding="UTF-8"?>
+<!ELEMENT LexicalResource (Lexicon+)>
+<!ELEMENT Lexicon (LexicalEntry+, Synset*)>
+<!ATTLIST Lexicon
+label CDATA #IMPLIED
+language CDATA #REQUIRED>
+<!ELEMENT LexicalEntry (Lemma, Sense*)>
+<!ATTLIST LexicalEntry
+id ID #IMPLIED>
+<!ELEMENT Lemma EMPTY>
+<!ATTLIST Lemma
+writtenForm CDATA #REQUIRED
+partOfSpeech CDATA #REQUIRED>
+<!ELEMENT Sense (SenseAxis*)>
+<!ATTLIST Sense
+id ID #REQUIRED
+synset IDREF #REQUIRED>
+<!ELEMENT Synset (Definition?, SynsetRelation*)>
+<!ATTLIST Synset
+id ID #REQUIRED
+ili CDATA #REQUIRED>
+<!ELEMENT Definition (Statement*)>
+<!ATTLIST Definition
+gloss CDATA #REQUIRED>
+<!ELEMENT Statement EMPTY>
+<!ATTLIST Statement
+example CDATA #REQUIRED>
+<!ELEMENT SynsetRelation EMPTY>
+<!ATTLIST SynsetRelation
+target IDREF #REQUIRED
+relType CDATA #REQUIRED>
+<!ELEMENT SenseAxis EMPTY>
+<!ATTLIST SenseAxis
+target IDREF #REQUIRED
+relType CDATA #REQUIRED>

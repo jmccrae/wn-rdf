@@ -1,0 +1,16 @@
+{
+    "wn": "http://wordnet-rdf.princeton.edu/ontology#",
+    "lemon": "http://lemon-model.net/lemon#",
+    "gloss" : "http://wordnet-rdf.princeton.edu/ontology#gloss",
+    "hyponym" : "http://wordnet-rdf.princeton.edu/ontology#hyponym",
+    "partOfSpeech" : {
+        "@id": "http://wordnet-rdf.princeton.edu/ontology#partOfSpeech",
+        "@type": "@id"
+    },
+    "synsets" : {
+        "@id": "http://wordnet-rdf.princeton.edu/ontology#synset",
+        "@container": "@index"
+    },
+    "lemma" : "wn:lemma",
+    "senses" : "lemon:isSenseOf"
+}

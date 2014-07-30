@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding="UTF-8"?>
+<!ELEMENT LexicalResource (GlobalInformation, Lexicon+, SenseAxes?)>
+<!ELEMENT GlobalInformation EMPTY>
+<!ATTLIST GlobalInformation 
+label CDATA #IMPLIED>
+<!ELEMENT Lexicon (LexicalEntry+, Synset*)>
+<!ATTLIST Lexicon
+languageCoding CDATA #FIXED "ISO 639-3"
+label CDATA #IMPLIED
+language CDATA #REQUIRED
+owner CDATA #REQUIRED
+version CDATA #REQUIRED>
+<!ELEMENT LexicalEntry (Meta?, Lemma, Sense*)>
+<!ATTLIST LexicalEntry
+id ID #IMPLIED>
+<!ELEMENT Lemma EMPTY>
+<!ATTLIST Lemma
+writtenForm CDATA #REQUIRED
+partOfSpeech CDATA #REQUIRED>
+<!ELEMENT Sense (Meta?, MonolingualExternalRefs?)>
+<!ATTLIST Sense
+id ID #REQUIRED
+synset IDREF #REQUIRED>
+<!ELEMENT Meta EMPTY>
+<!ATTLIST Meta
+author CDATA #IMPLIED
+date CDATA #IMPLIED
+source CDATA #IMPLIED
+status CDATA #IMPLIED
+confidenceScore CDATA #IMPLIED>
+<!ELEMENT Synset (Meta?, Definition?, SynsetRelations, MonolingualExternalRefs)>
+<!ATTLIST Synset
+id ID #REQUIRED
+baseConcept (1|2|3) #REQUIRED>
+<!ELEMENT Definition (Statement*)>
+<!ATTLIST Definition
+gloss CDATA #REQUIRED>
+<!ELEMENT Statement EMPTY>
+<!ATTLIST Statement
+example CDATA #REQUIRED>
+<!ELEMENT SynsetRelations (SynsetRelation+)>
+<!ELEMENT SynsetRelation (Meta?)>
+<!ATTLIST SynsetRelation
+target IDREF #REQUIRED
+relType CDATA #REQUIRED>
+<!ELEMENT MonolingualExternalRefs (MonolingualExternalRef+)>
+<!ELEMENT MonolingualExternalRef (Meta?)>
+<!ATTLIST MonolingualExternalRef 
+externalSystem CDATA #REQUIRED
+externalReference CDATA #REQUIRED
+relType (at|plus|equal) #IMPLIED>
+<!ELEMENT SenseAxes (SenseAxis+)>
+<!ELEMENT SenseAxis (Meta?, Target+, InterlingualExternalRefs?)>
+<!ATTLIST SenseAxis
+id ID #REQUIRED
+relType CDATA #REQUIRED>
+<!ELEMENT Target EMPTY>
+<!ATTLIST Target
+ID CDATA #REQUIRED>
+<!ELEMENT InterlingualExternalRefs (InterlingualExternalRef+)>
+<!ELEMENT InterlingualExternalRef (Meta?)>
+<!ATTLIST InterlingualExternalRef 
+externalSystem CDATA #REQUIRED
+externalReference CDATA #REQUIRED
+relType (at|plus|equal) #IMPLIED>
