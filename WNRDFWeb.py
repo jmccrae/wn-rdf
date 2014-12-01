@@ -162,7 +162,7 @@ class WNRDFServer:
         else:
             url = "http://localhost:8000/sparql/?query=%s" % (quote_plus(query))
         req = urllib2.Request(url, headers=headers)
-        result = urllib2.openurl(req)
+        result = urllib2.urlopen(req)
         if result.getcode() == 200:
             if mime_type != "html":
                 if mime_type == "json-sparql":
