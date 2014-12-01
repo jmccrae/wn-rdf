@@ -8,7 +8,7 @@ from cStringIO import StringIO
 from wsgiref.simple_server import make_server
 from urlparse import parse_qs
 from urllib import unquote_plus, quote_plus
-from urllib2 import urlopen, Request
+import urllib2
 from rdflib import RDFS, URIRef, Graph
 from rdflib import plugin
 from rdflib.store import Store, VALID_STORE
