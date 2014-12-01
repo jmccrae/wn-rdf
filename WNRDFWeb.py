@@ -147,11 +147,14 @@ class WNRDFServer:
 
     
     def sparql_query(self, query, mime_type, default_graph_uri, start_response, timeout=10):
-        result = urlopen("http://localhost:8000/sparql/?query=%s&default-graph-uri=%s" % (quote_plus(query), quote_plus(default_graph_uri)))
+        if default_graph_uri:
+            result = urlopen("http://localhost:8000/sparql/?query=%s&default-graph-uri=%s" % (quote_plus(query), quote_plus(default_graph_uri)))
+        else:
+            result = urlopen("http://localhost:8000/sparql/?query=%s" % (quote_plus(query)))
         if result.getcode() == 200:
             if mime_type != "html":
                 start_response('200 OK' [('Content-type', 'application/sparql-results+xml')])
-                return result.read()
+                return [result.read()]
             else:
                 start_response('200 OK', [('Content-type','text/html')])
                 dom = et.parse(StringIO(result.read()))
