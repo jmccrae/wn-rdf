@@ -150,7 +150,7 @@ class WNRDFServer:
         result = urlopen("http://localhost:8000/sparql/?query=%s&default-graph-uri=%s" % (quote_plus(query), quote_plus(default_graph_uri)))
         if result.getcode() == 200:
             if mime_type != "html":
-                start_response('200 OK' [('Content-type',self.mime_types['sparql'])])
+                start_response('200 OK' [('Content-type', 'application/sparql-results+xml')])
                 return [result.read()]
             else:
                 start_response('200 OK', [('Content-type','text/html')])
