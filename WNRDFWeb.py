@@ -7,7 +7,8 @@ import lxml.etree as et
 from cStringIO import StringIO
 from wsgiref.simple_server import make_server
 from urlparse import parse_qs
-from urllib import unquote_plus, urlopen, quote_plus
+from urllib import unquote_plus, quote_plus
+from urllib2 import urlopen, Request
 from rdflib import RDFS, URIRef, Graph
 from rdflib import plugin
 from rdflib.store import Store, VALID_STORE
@@ -64,7 +65,7 @@ class WNRDFServer:
         self.mime_types = dict(
             [('html', 'text/html'), ('pretty-xml', 'application/rdf+xml'), ('turtle', 'text/turtle'),
              ('nt', 'text/plain'), ('json-ld', 'application/ld+json'), ('sparql', 'application/sparql-results+xml'
-                 )])
+                 ), ('json-sparql', 'application/sparql-results+json')])
         self.mime_ext = dict(
             [('html','.html'), ('pretty-xml', '.rdf'), ('turtle', '.ttl'), ('nt', '.nt')])
         self.wordnet_context = WNRDF.WNRDFContext(db, mapping_db)
@@ -153,14 +154,15 @@ class WNRDFServer:
 
     
     def sparql_query(self, query, mime_type, default_graph_uri, start_response, timeout=10):
-        mt = ""
-        print(mime_type)
-        if mime_type == "json-sparql":
-          mt = "&mime-type=application/sparql-results+json"
+        headers = {}
+        if mime_type == 'json-sparql':
+          headers["Accept"] = "application/sparql-results+json"
         if default_graph_uri:
-            result = urlopen("http://localhost:8000/sparql/?query=%s&default-graph-uri=%s%s" % (quote_plus(query), quote_plus(default_graph_uri), mt))
+            url = "http://localhost:8000/sparql/?query=%s&default-graph-uri=%s%s" % (quote_plus(query), quote_plus(default_graph_uri))
         else:
-            result = urlopen("http://localhost:8000/sparql/?query=%s%s" % (quote_plus(query), mt))
+            url = "http://localhost:8000/sparql/?query=%s%s" % (quote_plus(query))
+        req = urllib2.Request(url, headers=headers)
+        result = urllib2.openurl(req)
         if result.getcode() == 200:
             if mime_type != "html":
                 if mime_type == "json-sparql":
