@@ -112,6 +112,8 @@ class WNRDFServer:
                 return "json-ld"
             elif accept == "application/sparql-results+xml":
                 return "sparql"
+            elif accept == "application/sparql-results+json":
+                return "json-sparql"
         best_q = -1
         best_mime = "html"
         for accept in accepts:
@@ -143,17 +145,27 @@ class WNRDFServer:
                             if mime == "application/sparql-results+xml":
                                 best_q = q
                                 best_mime = "sparql"
+                            if mime == "application/sparql-results+json":
+                                best_q = q
+                                best_mime = "json-sparql"
+
         return best_mime
 
     
     def sparql_query(self, query, mime_type, default_graph_uri, start_response, timeout=10):
+        mt = ""
+        if mime_type == "json-sparql":
+          mt = "&mime-type=application/sparql-results+json"
         if default_graph_uri:
-            result = urlopen("http://localhost:8000/sparql/?query=%s&default-graph-uri=%s" % (quote_plus(query), quote_plus(default_graph_uri)))
+            result = urlopen("http://localhost:8000/sparql/?query=%s&default-graph-uri=%s%s" % (quote_plus(query), quote_plus(default_graph_uri), mt))
         else:
-            result = urlopen("http://localhost:8000/sparql/?query=%s" % (quote_plus(query)))
+            result = urlopen("http://localhost:8000/sparql/?query=%s%s" % (quote_plus(query), mt))
         if result.getcode() == 200:
             if mime_type != "html":
-                start_response('200 OK', [('Content-type', 'application/sparql-results+xml')])
+                if mime_type == "json-sparql":
+                    start_response('200 OK', [('Content-type', 'application/sparql-results+json')])
+                else:
+                    start_response('200 OK', [('Content-type', 'application/sparql-results+xml')])
                 return [result.read()]
             else:
                 start_response('200 OK', [('Content-type','text/html')])
