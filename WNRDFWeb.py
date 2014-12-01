@@ -97,7 +97,7 @@ class WNRDFServer:
         return html
 
     @staticmethod
-    def best_mime_type(accept_string):
+    def best_mime_type(accept_string, deflt):
         accepts = re.split("\s*,\s*", accept_string)
         for accept in accepts:
             if accept == "text/html":
@@ -115,7 +115,7 @@ class WNRDFServer:
             elif accept == "application/sparql-results+json":
                 return "json-sparql"
         best_q = -1
-        best_mime = "html"
+        best_mime = deflt 
         for accept in accepts:
             if ";" in accept:
                 mime = re.split("\s*;\s*", accept)[0]
@@ -154,6 +154,7 @@ class WNRDFServer:
     
     def sparql_query(self, query, mime_type, default_graph_uri, start_response, timeout=10):
         mt = ""
+        print(mime_type)
         if mime_type == "json-sparql":
           mt = "&mime-type=application/sparql-results+json"
         if default_graph_uri:
@@ -229,7 +230,10 @@ class WNRDFServer:
         elif re.match(".*\.json", uri):
             mime = "json-ld"
         elif 'HTTP_ACCEPT' in environ:
-            mime = self.best_mime_type(environ['HTTP_ACCEPT'])
+            if uri.startswith("/sparql"):
+                mime = self.best_mime_type(environ['HTTP_ACCEPT'], "sparql")
+            else:
+                mime = self.best_mime_type(environ['HTTP_ACCEPT'], "html")
         else:
             mime = "html"
 
