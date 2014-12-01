@@ -158,9 +158,9 @@ class WNRDFServer:
         if mime_type == 'json-sparql':
           headers["Accept"] = "application/sparql-results+json"
         if default_graph_uri:
-            url = "http://localhost:8000/sparql/?query=%s&default-graph-uri=%s%s" % (quote_plus(query), quote_plus(default_graph_uri))
+            url = "http://localhost:8000/sparql/?query=%s&default-graph-uri=%s" % (quote_plus(query), quote_plus(default_graph_uri))
         else:
-            url = "http://localhost:8000/sparql/?query=%s%s" % (quote_plus(query))
+            url = "http://localhost:8000/sparql/?query=%s" % (quote_plus(query))
         req = urllib2.Request(url, headers=headers)
         result = urllib2.openurl(req)
         if result.getcode() == 200:
