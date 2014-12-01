@@ -151,7 +151,7 @@ class WNRDFServer:
         if result.getcode() == 200:
             if mime_type != "html":
                 start_response('200 OK' [('Content-type', 'application/sparql-results+xml')])
-                return [result.read()]
+                return result.read()
             else:
                 start_response('200 OK', [('Content-type','text/html')])
                 dom = et.parse(StringIO(result.read()))
