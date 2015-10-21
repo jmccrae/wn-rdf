@@ -7,7 +7,8 @@ import lxml.etree as et
 from cStringIO import StringIO
 from wsgiref.simple_server import make_server
 from urlparse import parse_qs
-from urllib import unquote_plus, urlopen, quote_plus
+from urllib import unquote_plus, quote_plus
+import urllib2
 from rdflib import RDFS, URIRef, Graph
 from rdflib import plugin
 from rdflib.store import Store, VALID_STORE
@@ -64,7 +65,7 @@ class WNRDFServer:
         self.mime_types = dict(
             [('html', 'text/html'), ('pretty-xml', 'application/rdf+xml'), ('turtle', 'text/turtle'),
              ('nt', 'text/plain'), ('json-ld', 'application/ld+json'), ('sparql', 'application/sparql-results+xml'
-                 )])
+                 ), ('json-sparql', 'application/sparql-results+json')])
         self.mime_ext = dict(
             [('html','.html'), ('pretty-xml', '.rdf'), ('turtle', '.ttl'), ('nt', '.nt')])
         self.wordnet_context = WNRDF.WNRDFContext(db, mapping_db)
@@ -97,7 +98,7 @@ class WNRDFServer:
         return html
 
     @staticmethod
-    def best_mime_type(accept_string):
+    def best_mime_type(accept_string, deflt):
         accepts = re.split("\s*,\s*", accept_string)
         for accept in accepts:
             if accept == "text/html":
@@ -112,8 +113,10 @@ class WNRDFServer:
                 return "json-ld"
             elif accept == "application/sparql-results+xml":
                 return "sparql"
+            elif accept == "application/sparql-results+json":
+                return "json-sparql"
         best_q = -1
-        best_mime = "html"
+        best_mime = deflt 
         for accept in accepts:
             if ";" in accept:
                 mime = re.split("\s*;\s*", accept)[0]
@@ -143,14 +146,29 @@ class WNRDFServer:
                             if mime == "application/sparql-results+xml":
                                 best_q = q
                                 best_mime = "sparql"
+                            if mime == "application/sparql-results+json":
+                                best_q = q
+                                best_mime = "json-sparql"
+
         return best_mime
 
     
     def sparql_query(self, query, mime_type, default_graph_uri, start_response, timeout=10):
-        result = urlopen("http://localhost:8000/sparql/?query=%s&default-graph-uri=%s" % (quote_plus(query), quote_plus(default_graph_uri)))
+        headers = {}
+        if mime_type == 'json-sparql':
+          headers["Accept"] = "application/sparql-results+json"
+        if default_graph_uri:
+            url = "http://localhost:8000/sparql/?query=%s&default-graph-uri=%s" % (quote_plus(query), quote_plus(default_graph_uri))
+        else:
+            url = "http://localhost:8000/sparql/?query=%s" % (quote_plus(query))
+        req = urllib2.Request(url, headers=headers)
+        result = urllib2.urlopen(req)
         if result.getcode() == 200:
             if mime_type != "html":
-                start_response('200 OK' [('Content-type',self.mime_types['sparql'])])
+                if mime_type == "json-sparql":
+                    start_response('200 OK', [('Content-type', 'application/sparql-results+json')])
+                else:
+                    start_response('200 OK', [('Content-type', 'application/sparql-results+xml')])
                 return [result.read()]
             else:
                 start_response('200 OK', [('Content-type','text/html')])
@@ -214,7 +232,10 @@ class WNRDFServer:
         elif re.match(".*\.json", uri):
             mime = "json-ld"
         elif 'HTTP_ACCEPT' in environ:
-            mime = self.best_mime_type(environ['HTTP_ACCEPT'])
+            if uri.startswith("/sparql"):
+                mime = self.best_mime_type(environ['HTTP_ACCEPT'], "sparql")
+            else:
+                mime = self.best_mime_type(environ['HTTP_ACCEPT'], "html")
         else:
             mime = "html"
 
