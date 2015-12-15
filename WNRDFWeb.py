@@ -304,6 +304,15 @@ class WNRDFServer:
                 if row:
                     wn31, = row
                     return self.send302(start_response, "/wn31/%s-%s" % (wn31, synset_id[-1]))
+                elif synset_id.endswith("s"):
+                    synset_id = synset_id[:-1] + "a"
+                    c.execute("select wn31 from wn30 where wn30=?", (synset_id,))
+                    row = c.fetchone()
+                    if row:
+                        wn31, = row
+                        return self.send302(start_response, "/wn31/%s-%s" % (wn31, synset_id[-1]))
+                    else:
+                        return self.send404(start_response)
                 else:
                     return self.send404(start_response)
         elif re.match("/wn20/(\d{8}\-[nvarsp])(|\.nt|\.html|\.rdf|\.ttl|\.json)$", uri):
