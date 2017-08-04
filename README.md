@@ -58,14 +58,9 @@ To run this the following are required
 
 RDFLib and LXML should be part of most Linux distributions, e.g., in Ubuntu/Debian:
 
-   apt-get install python-rdflib python-lxml
+    apt-get install python-rdflib python-lxml
 
-rdflib-jsonld can be installed as follows:
-
-    git clone https://github.com/RDFLib/rdflib-jsonld.git
-    cd rdflib-jsonld
-    sudo python setup.py install 
-
+rdflib-jsonld should also be installed see https://github.com/RDFLib/rdflib-jsonld
 
 Mappings
 --------
