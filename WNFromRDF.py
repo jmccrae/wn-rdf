@@ -18,7 +18,7 @@ def get_synset_id(uri):
     @param uri: A <> enclosed URI
     @return The synset identifier (as Int) or None if this is not a synset URI
     """
-    m = re.findall("<.*" + wn_version + "\-(\d{9})\-[nvarsp]>", uri)
+    m = re.findall("<.*" + wn_version + "/(\d{9})\-[nvarspNVARSP]>", uri)
     if m:
         return int(m[0])
     else:
@@ -243,7 +243,8 @@ def sql_sensetag(uri, target, postponed):
     @param postponed: The writer for postponed SQL actions
     """
     global n_sensetags
-    position = int(target[target.rindex('-') + 1: -2 ])
+    print(target)
+    position = int(target[target.rindex('-') + 1: -1 ])
     lemma = get_lemma(uri)
     senseid = remap_sense(uri)
     target_senseid = get_lemma(target).replace(" ","_") + "#1:p"
@@ -305,12 +306,14 @@ def read_from_nt(nt, postponed):
         elems = re.split(" ", line)
         subj = elems[0]
         if not subj.startswith("<") and not subj.endswith(">"):
-            print line
-            raise Exception("Bad subject")
+            #print line
+            continue
+            #raise Exception("Bad subject")
         pred = elems[1]
         if not pred.startswith("<") and not pred.endswith(">"):
-            print line
-            raise Exception("Bad predicate")
+            #print line
+            continue
+            #raise Exception("Bad predicate")
         if elems[-1].endswith('.'):
             obj = " ".join(elems[2:])
             obj = obj[:-1].strip()
@@ -384,8 +387,9 @@ def read_from_nt(nt, postponed):
             senses_sensenum[subj] = int_literal(obj)
             sql_senses(subj,senses_synsetid, senses_sensenum, senses_lexid, senses_tagcount, senses_old_sensekey)
         elif pred == (wn_ontology + "tag_count>"):
-            senses_tagcount[subj] = int_literal(obj)
-            sql_senses(subj,senses_synsetid, senses_sensenum, senses_lexid, senses_tagcount, senses_old_sensekey)
+            if obj != "\"None\"":
+                senses_tagcount[subj] = int_literal(obj)
+                sql_senses(subj,senses_synsetid, senses_sensenum, senses_lexid, senses_tagcount, senses_old_sensekey)
         elif pred == (wn_ontology + "lex_id>"):
             senses_lexid[subj] = int_literal(obj)
             sql_senses(subj,senses_synsetid, senses_sensenum, senses_lexid, senses_tagcount, senses_old_sensekey)
